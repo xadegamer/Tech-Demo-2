@@ -15,8 +15,9 @@ MonoBehaviour:
   ID: 1
   isStackable: 1
   itemName: Food
-  itemDescription: 
+  itemDescription: Food oooooooo
   itemIcon: {fileID: 0}
   itemColor: {r: 0, g: 0, b: 0, a: 0}
-  itemPrefab: {fileID: 0}
-  maxAmount: 0
+  itemPrefab: {fileID: 7964795401958707750, guid: 60bb37469ec8339479ce33ae0e7d4eaa,
+    type: 3}
+  maxAmount: 5

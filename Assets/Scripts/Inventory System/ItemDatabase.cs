@@ -17,29 +17,14 @@ public class ItemDatabase : SerializedScriptableObject
 
         for (int i = 0; i < items.Length; i++)
         {
-            ItemSO item;
-
-            if (itemDatabase.TryGetValue(items[i].ID, out item))
-            {
-                Debug.LogError("Item with ID " + items[i].ID + " already exist in the database.");
-            }
-            else
-            {
+            if (!itemDatabase.TryGetValue(items[i].ID, out ItemSO item))
                 itemDatabase.Add(items[i].ID, items[i]);
-            }
         }
     }
     
     public ItemSO GetItemSOByID(int id)
     {
-        if (itemDatabase.ContainsKey(id))
-        {
-            return itemDatabase[id];
-        }
-        else
-        {
-            Debug.LogError("Item with ID " + id + " does not exist in the database.");
-            return null;
-        }
+        if (itemDatabase.ContainsKey(id)) return itemDatabase[id];
+        else return null;
     }
 }

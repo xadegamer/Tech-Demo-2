@@ -15,8 +15,9 @@ MonoBehaviour:
   ID: 0
   isStackable: 0
   itemName: Radio
-  itemDescription: 
+  itemDescription: Radioooo oooooooo
   itemIcon: {fileID: 0}
   itemColor: {r: 0, g: 0, b: 0, a: 0}
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 8150990447175963513, guid: 3ff445615e0b366489995690803ba53c,
+    type: 3}
   maxAmount: 0

@@ -2,41 +2,43 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
+
+[Serializable]
+public class InventoryData 
+{
+  public  List<ItemData> ItemDataList = new List<ItemData>();
+}
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
 
-    public event EventHandler OnScanningObjectChanged;
+    public event EventHandler OnObjectAdded;
 
     [SerializeField] private string saveID;
 
     [SerializeField] private ItemDatabase itemDatabase;
 
-    [SerializeField] private List<Item> inventoryItems = new List<Item>();
+    [SerializeField] private List<Item> currentInventoryItems = new List<Item>();
 
-    [SerializeField] private List<ItemData> inventoryItemData = new List<ItemData>();
+    [SerializeField] private InventoryData inventoryData;
 
     private void Awake()
     {
         Instance = this;
-    }
-    private void Start()
-    {
         LoadInventory();
     }
-
+    
     public void LoadInventory()
     {
-        inventoryItemData = JsonSaveSystem.Load<List<ItemData>>(saveID);
+        inventoryData = JsonSaveSystem.Load<InventoryData>(saveID);
+        if (inventoryData == null) inventoryData = new InventoryData();
+        if (inventoryData.ItemDataList.Count == 0) return;
 
-        if (inventoryItemData.Count == 0) return;
-
-        foreach (ItemData itemData in inventoryItemData)
+        foreach (ItemData itemData in inventoryData.ItemDataList)
         {
             Item item = CreateItem(itemDatabase.GetItemSOByID(itemData.ID), itemData);
-            inventoryItems.Add(item);
+            currentInventoryItems.Add(item);
         }
     }
 
@@ -44,13 +46,13 @@ public class InventoryManager : MonoBehaviour
     {
         if (itemSO.isStackable)
         {
-            for (int i = 0; i < inventoryItems.Count; i++)
+            for (int i = 0; i < currentInventoryItems.Count; i++)
             {
-                if (inventoryItems[i].itemSO == itemSO)
+                if (currentInventoryItems[i].itemSO == itemSO)
                 {
-                    if (inventoryItems[i].itemData.amount < inventoryItems[i].itemSO.maxAmount)
+                    if (currentInventoryItems[i].itemData.amount < currentInventoryItems[i].itemSO.maxAmount)
                     {
-                        inventoryItems[i].itemData.amount++;
+                        currentInventoryItems[i].itemData.amount++;
                         SaveInventory();
                     }
                     return;
@@ -58,14 +60,14 @@ public class InventoryManager : MonoBehaviour
             }
 
             Item newItem = CreateItem(itemSO);
-            inventoryItems.Add(newItem);
-            inventoryItemData.Add(newItem.itemData);
+            currentInventoryItems.Add(newItem);
+            inventoryData.ItemDataList.Add(newItem.itemData);
         }
         else
         {
             Item newItem = CreateItem(itemSO);
-            inventoryItems.Add(newItem);
-            inventoryItemData.Add(newItem.itemData);
+            currentInventoryItems.Add(newItem);
+            inventoryData.ItemDataList.Add(newItem.itemData);
         }
 
         SaveInventory();
@@ -81,14 +83,14 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                inventoryItems.Remove(item);
-                inventoryItemData.Remove(item.itemData);
+                currentInventoryItems.Remove(item);
+                inventoryData.ItemDataList.Remove(item.itemData);
             }
         }
         else
         {
-            inventoryItems.Remove(item);
-            inventoryItemData.Remove(item.itemData);
+            currentInventoryItems.Remove(item);
+            inventoryData.ItemDataList.Remove(item.itemData);
         }
 
         SaveInventory();
@@ -102,8 +104,13 @@ public class InventoryManager : MonoBehaviour
         return item;
     }
 
+    public List<Item> GetInventoryItems()
+    {
+        return currentInventoryItems;
+    }
+
     public void SaveInventory()
     {
-        JsonSaveSystem.Save(saveID, inventoryItemData);
+        JsonSaveSystem.Save(saveID, inventoryData);
     }
 }

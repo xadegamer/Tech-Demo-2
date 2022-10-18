@@ -9,7 +9,10 @@ public class ItemSO : ScriptableObject
     public int ID;
     public bool isStackable;
     public string itemName;
+
+    [TextArea(5, 10)]
     public string itemDescription;
+    
     public Sprite itemIcon;
     public Color itemColor;
     public GameObject itemPrefab;
@@ -33,20 +36,5 @@ public class ItemData
     {
         ID = itemSO.ID;
         amount = 1;
-    }
-
-    public int GetValue()
-    {
-        return amount;
-    }
-
-    public void AddValue(int increment)
-    {
-        amount += increment;
-    }
-
-    public void RemoveValue(int increment)
-    {
-        amount -= increment;
     }
 }

@@ -12,7 +12,9 @@ namespace StarterAssets
 	public class FirstPersonController : MonoBehaviour
 	{
 		[Header("Player")]
-		[Tooltip("Move speed of the character in m/s")]
+        [Tooltip("Enable or Disable movement")]
+        public bool canMove = true;
+        [Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
 		public float SprintSpeed = 6.0f;
@@ -111,15 +113,17 @@ namespace StarterAssets
 		}
 
 		private void Update()
-		{
-			JumpAndGravity();
+        {
+            if (!canMove) return;
+            JumpAndGravity();
 			GroundedCheck();
 			Move();
 		}
 
 		private void LateUpdate()
-		{
-			CameraRotation();
+        {
+            if (!canMove) return;
+            CameraRotation();
 		}
 
 		private void GroundedCheck()
@@ -264,5 +268,15 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
-	}
+
+        public void SetSensitivity(float newSensitivity)
+        {
+            RotationSpeed = newSensitivity;
+        }
+
+        public void EnableMovement(bool newState)
+        {
+            canMove = newState;
+        }
+    }
 }
