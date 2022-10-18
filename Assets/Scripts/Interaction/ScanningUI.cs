@@ -3,39 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ScanningUI : MonoBehaviour {
-
-    [SerializeField] private InteractionSystem interactionSystem;
-
+public class ScanningUI : MonoBehaviour 
+{
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI infoText;
 
     private void Start() 
     {
-        interactionSystem.OnScanningObjectChanged += ScanningVision_OnScanningObjectChanged;
-        Hide();
+        InteractionSystem.Instance.OnScanningObjectChanged += ScanningVision_OnScanningObjectChanged;
+        ToggleObject(false);
     }
 
     private void ScanningVision_OnScanningObjectChanged(object sender, System.EventArgs e) {
         if (sender != null) 
         {
-            Show();
+            gameObject.SetActive(true);
             ScannableObject scannableObject = ((GameObject)sender).GetComponent<ScannableObject>();
             nameText.text = scannableObject.scanName;
             infoText.text = scannableObject.scanAffiliation;
         } 
         else 
         {
-            Hide();
+            gameObject.SetActive(false);
         }
     }
 
-    private void Show() {
-        gameObject.SetActive(true);
+    public void ToggleObject(bool toggle)
+    {
+        gameObject.SetActive(toggle);
     }
-
-    private void Hide() {
-        gameObject.SetActive(false);
-    }
-
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class InteractionSystem : MonoBehaviour
 {
+    public static InteractionSystem Instance { get; private set; }
+
     public event EventHandler OnScanningObjectChanged;
     
     [SerializeField] private Transform playerCameraTranform;
@@ -13,9 +15,9 @@ public class InteractionSystem : MonoBehaviour
 
     private GameObject lastActiveScannedGameObject;
 
-    void Start()
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
     void Update()

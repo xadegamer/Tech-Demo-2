@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 309323647}
   - component: {fileID: 309323646}
   m_Layer: 0
-  m_Name: Text_Name
+  m_Name: Text_Name Header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 381989810}
   - component: {fileID: 381989809}
   m_Layer: 0
-  m_Name: Text (TMP) (3)
+  m_Name: Text_InfoHeader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,7 +346,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -73.89987, y: -8.7}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 90.86, y: 21.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &381989809
 MonoBehaviour:
@@ -1572,6 +1572,7 @@ GameObject:
   - component: {fileID: 1307108574}
   - component: {fileID: 1307108576}
   - component: {fileID: 1307108575}
+  - component: {fileID: 1307108577}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -1642,6 +1643,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307108573}
   m_CullTransparentMesh: 0
+--- !u!114 &1307108577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307108573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507a8f36d2bd6d445af1e887e3ef0b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 2137973107}
+  infoText: {fileID: 892024135}
 --- !u!1 &1325686037
 GameObject:
   m_ObjectHideFlags: 0
