@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [CreateAssetMenu(fileName = "New Document", menuName = "DocumetSystem / Create Document", order = 1)]
 public class DocumentSO : ScriptableObject
@@ -13,4 +14,9 @@ public class DocumentSO : ScriptableObject
     
     public Sprite documentIcon;
     public Color documentColor;
+
+    [Header("Font Setting")]
+    public float textSize;
+    public TMP_FontAsset documentFont;
+    
 }

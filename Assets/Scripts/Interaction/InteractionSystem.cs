@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractionSystem : MonoBehaviour
 {
@@ -32,9 +33,20 @@ public class InteractionSystem : MonoBehaviour
         {
             if (lastActiveScannedGameObject != raycastHit.collider.gameObject)
             {
+                if (lastActiveScannedGameObject != null)
+                {
+                    SetAllChildrenScanningSelected(lastActiveScannedGameObject, LayerMask.NameToLayer("Scannable"));
+                    lastActiveScannedGameObject = null;
+                }
+
                 lastActiveScannedGameObject = raycastHit.collider.gameObject;
                 SetAllChildrenScanningSelected(raycastHit.collider.gameObject, LayerMask.NameToLayer("Scanning"));
                 OnScanningObjectChanged?.Invoke(lastActiveScannedGameObject, EventArgs.Empty);
+            }
+
+            if (Mouse.current.rightButton.wasPressedThisFrame && raycastHit.transform.TryGetComponent(out IInteractable interactable))
+            {
+                interactable.Interact();
             }
         }
         else

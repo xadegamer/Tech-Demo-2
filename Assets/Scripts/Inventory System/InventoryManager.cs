@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 [Serializable]
@@ -14,6 +15,8 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance { get; private set; }
 
     public event EventHandler OnObjectAdded;
+
+    public event EventHandler OnObjectRemoved;
 
     [SerializeField] private string saveID;
 
@@ -44,6 +47,8 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItemToInventory(ItemSO itemSO)
     {
+        Item newItem = null;
+        
         if (itemSO.isStackable)
         {
             for (int i = 0; i < currentInventoryItems.Count; i++)
@@ -54,23 +59,26 @@ public class InventoryManager : MonoBehaviour
                     {
                         currentInventoryItems[i].itemData.amount++;
                         SaveInventory();
+                        OnObjectAdded.Invoke(currentInventoryItems[i], EventArgs.Empty);
                     }
                     return;
                 }
             }
 
-            Item newItem = CreateItem(itemSO);
+            newItem = CreateItem(itemSO);
             currentInventoryItems.Add(newItem);
             inventoryData.ItemDataList.Add(newItem.itemData);
         }
         else
         {
-            Item newItem = CreateItem(itemSO);
+            newItem = CreateItem(itemSO);
             currentInventoryItems.Add(newItem);
             inventoryData.ItemDataList.Add(newItem.itemData);
         }
 
         SaveInventory();
+
+        OnObjectAdded.Invoke(newItem, EventArgs.Empty);
     }
 
     public void RemoveItemFromInventory(Item item)
@@ -94,6 +102,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         SaveInventory();
+        OnObjectRemoved.Invoke(item, EventArgs.Empty);
     }
 
     public Item CreateItem(ItemSO itemSO, ItemData itemData = null)

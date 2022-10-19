@@ -32,6 +32,7 @@ public class DocumentUI : MonoBehaviour
         currentDocumentSO = documentSO;
         documentTitle.text = currentDocumentSO.documentName;
         documentInfo.text = currentDocumentSO.documentPages[documentIndex];
+        documentUI.SetActive(true);
     }
 
     public void ShowNextDocumentPage()
@@ -42,6 +43,7 @@ public class DocumentUI : MonoBehaviour
 
     public void ShowClearDocument()
     {
+        clearDocumentUI.SetActive(true);
         documentTitle.text = documentTitle.text;
         documentInfo.text = documentInfo.text;
     }
@@ -51,7 +53,7 @@ public class DocumentUI : MonoBehaviour
         clearDocumentUI.SetActive(false);
     }
 
-    public void HideDocument()
+    public void CloseDocument()
     {
         documentUI.SetActive(false);
     }
