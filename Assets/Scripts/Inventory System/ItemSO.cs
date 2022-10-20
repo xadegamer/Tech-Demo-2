@@ -4,7 +4,7 @@ using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory / Create Item", order = 1)]
-public class ItemSO : ScriptableObject
+public class ItemSO : ScriptableObjectBase
 {
     public int ID;
     public bool oneAllowed;
@@ -18,6 +18,11 @@ public class ItemSO : ScriptableObject
     public Color itemColor;
     public GameObject itemPrefab;
     public int maxAmount;
+
+    public override int GetID()
+    {
+        return ID;
+    }
 }
 
 [System.Serializable]

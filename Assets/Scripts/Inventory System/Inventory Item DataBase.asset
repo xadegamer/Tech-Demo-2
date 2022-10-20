@@ -28,7 +28,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: itemDatabase
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[ItemSO,
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[ScriptableObjectBase,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7

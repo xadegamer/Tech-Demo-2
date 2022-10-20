@@ -20,7 +20,7 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] private string saveID;
 
-    [SerializeField] private ItemDatabase itemDatabase;
+    [SerializeField] private ScriptableObjectDatabase itemDatabase;
 
     [SerializeField] private List<Item> currentInventoryItems = new List<Item>();
 

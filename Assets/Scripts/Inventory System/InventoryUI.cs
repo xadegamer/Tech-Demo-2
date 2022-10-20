@@ -9,6 +9,7 @@ public class InventoryUI : MonoBehaviour
     public static InventoryUI Instance { get; private set; }
 
     [Header("Properties")]
+    [SerializeField] private GameObject inventoryUI;
     [SerializeField] private float wheelSpinSpeed;
     [SerializeField] private float wheelRadius;
     [SerializeField] private float currentSlotRotationSpeed = 1f;
@@ -25,7 +26,8 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private int slotInFront = 0;
     [SerializeField] private InventoryUISlot currentSlot;
     [SerializeField] bool isTurning = false;
-    
+    [SerializeField] bool isActivated = false;
+
     private void Awake()
     {
         Instance = this;
@@ -36,7 +38,28 @@ public class InventoryUI : MonoBehaviour
         InventoryManager.Instance.OnObjectAdded += InventoryManager_OnObjectAdded;
         InventoryManager.Instance.OnObjectRemoved += InventoryManager_OnObjectRemoved;
 
-        SetUp();
+        //SetUp();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (isActivated) CloseInventory(); else OpenInventory();
+            isActivated = !isActivated;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && isActivated && !isTurning)
+        {
+            RotateLeft();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) && isActivated && !isTurning)
+        {
+            RotateRight();
+        }
+
+        if (!isTurning && currentSlot != null) currentSlot.transform.Rotate(Vector3.right * currentSlotRotationSpeed * Time.deltaTime);
     }
 
     private void InventoryManager_OnObjectAdded(object sender, EventArgs e)
@@ -46,12 +69,16 @@ public class InventoryUI : MonoBehaviour
 
     public void OpenInventory()
     {
-
+        SetUp();
+        GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);
+        inventoryUI.SetActive(true);
     }
 
     public void CloseInventory()
     {
-
+        inventoryUI.SetActive(false);
+        ResetInventory();
+        GameManager.Instance.SwitchControl(GameManager.ControlMode.PlayerControl);
     }
 
     private void InventoryManager_OnObjectRemoved(object sender, EventArgs e)
@@ -79,7 +106,17 @@ public class InventoryUI : MonoBehaviour
         SpawnItemSlotInWheel(InventoryManager.Instance.GetInventoryItems().Count);
         DisplayCurrentItemInfo();
     }
-    
+
+    public void ResetInventory()
+    {
+        foreach (InventoryUISlot itemSlot in itemSlotsList)
+        {
+            Destroy(itemSlot.gameObject);
+        }
+        itemSlotsList.Clear();
+        slotInFront = 0;
+    }
+
     public void SpawnItemSlotInWheel(int howMany)
     {
         float angleSection = Mathf.PI * 2f / howMany;
@@ -109,20 +146,7 @@ public class InventoryUI : MonoBehaviour
         itemInfo.text = currentSlot.GetItem().itemSO.itemDescription;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && !isTurning)
-        {
-            RotateLeft();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.RightArrow) && !isTurning)
-        {
-            RotateRight();
-        }
 
-        if(!isTurning && currentSlot != null) currentSlot.transform.Rotate(Vector3.right * currentSlotRotationSpeed * Time.deltaTime);
-    }
 
     public void RotateRight()
     {

@@ -90,8 +90,8 @@ namespace StarterAssets
         
         private void OnApplicationFocus(bool hasFocus)
 		{
-			SetCursorState(cursorLocked);
-		}
+            SetCursorState(cursorLocked && GameManager.Instance.GetCurrentControlMode() == GameManager.ControlMode.PlayerControl);
+        }
 
 		private void SetCursorState(bool newState)
 		{
