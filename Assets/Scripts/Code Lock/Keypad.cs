@@ -18,7 +18,13 @@ public class Keypad : MonoBehaviour
         Confirm
     }
 
-    public void SetUp(Vector3 scale, KeyType keyType, int key = 0)
+    public void SetScale(Vector3 scale)
+    {
+        visual.localScale = scale;
+    }
+
+
+    public void SetUp(KeyType keyType, int key = 0)
     {
         this.keyType = keyType;
         this.key = key;
@@ -29,17 +35,17 @@ public class Keypad : MonoBehaviour
                 textMeshPro.text = key.ToString();
                 break;
             case KeyType.Clear:
+                //textMeshPro.autoSizeTextContainer = false;
                 textMeshPro.text = keyType.ToString();
                 break;
             case KeyType.Delete:
+                //textMeshPro.autoSizeTextContainer = false;
                 textMeshPro.text = keyType.ToString();
                 break;
             case KeyType.Confirm:
                 textMeshPro.text = keyType.ToString();
                 break;
         }
-
-        visual.localScale = scale;
     }
     
     public void OnPressed()

@@ -17,8 +17,6 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] private float tileSize;
     [SerializeField] private float tileMargin;
 
-    
-
     [SerializeField] private GameObject[,] tiles;
     [SerializeField] private Transform startPos;
 
@@ -41,8 +39,28 @@ public class GridGenerator : MonoBehaviour
 
     protected virtual void GenerateGameGrid()
     {
+        for (int i = 0; i < gridWidth; i++)
+        {
+            tiles[i, gridWidth].GetComponent<Keypad>().SetUp(Keypad.KeyType.Number, i + 1);
+            tiles[i, gridWidth - 1].GetComponent<Keypad>().SetUp(Keypad.KeyType.Number, i + 4);
+            tiles[i, gridWidth - 2].GetComponent<Keypad>().SetUp(Keypad.KeyType.Number, i + 7);
+        }
 
-
+        for (int i = 0; i < gridWidth; i++)
+        {
+            switch (i)
+            {
+                case 0:
+                    tiles[i, gridWidth - 3].GetComponent<Keypad>().SetUp(Keypad.KeyType.Delete);
+                    break;
+                case 1:
+                    tiles[i, gridWidth - 3].GetComponent<Keypad>().SetUp(Keypad.KeyType.Number, 0);
+                    break;
+                case 2:
+                    tiles[i, gridWidth - 3].GetComponent<Keypad>().SetUp(Keypad.KeyType.Clear);
+                    break;
+            }
+        }
     }
 
     internal void RegenerateGrid()
@@ -78,7 +96,7 @@ public class GridGenerator : MonoBehaviour
 
                 piece.GetComponent<Keypad>().OnSelected(normalMaterial);
 
-                piece.GetComponent<Keypad>().SetUp(new Vector3(tileSize, tileSize, tileSize), Keypad.KeyType.Number, i);
+                piece.GetComponent<Keypad>().SetScale(new Vector3(tileSize, tileSize, tileSize));
 
                 tiles[i, j] = piece;
             }
@@ -87,7 +105,8 @@ public class GridGenerator : MonoBehaviour
         lastTile = Instantiate(gridPiece, startPos.transform);
         lastTile.transform.localPosition = new Vector3(0.1f, -0.1f, 0);
         lastTile.GetComponent<Keypad>().OnSelected(normalMaterial);
-        lastTile.GetComponent<Keypad>().SetUp(new Vector3(tileSize * 3, tileSize, tileSize) ,Keypad.KeyType.Confirm);
+        lastTile.GetComponent<Keypad>().SetScale(new Vector3(tileSize * 3, tileSize, tileSize));
+        lastTile.GetComponent<Keypad>().SetUp(Keypad.KeyType.Confirm);
         lastTile.name = "TILE [" + 1 + "," + -1 + "]";
 
         //Spawn position and colorize the selection box
