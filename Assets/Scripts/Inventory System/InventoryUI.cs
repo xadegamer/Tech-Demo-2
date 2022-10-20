@@ -120,7 +120,7 @@ public class InventoryUI : MonoBehaviour
             RotateRight();
         }
 
-        if(!isTurning) currentSlot.transform.Rotate(Vector3.right * currentSlotRotationSpeed * Time.deltaTime);
+        if(!isTurning && currentSlot != null) currentSlot.transform.Rotate(Vector3.right * currentSlotRotationSpeed * Time.deltaTime);
     }
 
     public void RotateRight()

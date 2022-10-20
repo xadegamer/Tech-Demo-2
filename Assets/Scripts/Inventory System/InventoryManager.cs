@@ -59,7 +59,7 @@ public class InventoryManager : MonoBehaviour
                     {
                         currentInventoryItems[i].itemData.amount++;
                         SaveInventory();
-                        OnObjectAdded.Invoke(currentInventoryItems[i], EventArgs.Empty);
+                        OnObjectAdded?.Invoke(currentInventoryItems[i], EventArgs.Empty);
                     }
                     return;
                 }
@@ -78,7 +78,7 @@ public class InventoryManager : MonoBehaviour
 
         SaveInventory();
 
-        OnObjectAdded.Invoke(newItem, EventArgs.Empty);
+        OnObjectAdded?.Invoke(newItem, EventArgs.Empty);
     }
 
     public void RemoveItemFromInventory(Item item)
@@ -102,7 +102,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         SaveInventory();
-        OnObjectRemoved.Invoke(item, EventArgs.Empty);
+        OnObjectRemoved?.Invoke(item, EventArgs.Empty);
     }
 
     public Item CreateItem(ItemSO itemSO, ItemData itemData = null)

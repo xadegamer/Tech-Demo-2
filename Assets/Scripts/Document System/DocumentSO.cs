@@ -18,5 +18,5 @@ public class DocumentSO : ScriptableObject
     [Header("Font Setting")]
     public float textSize;
     public TMP_FontAsset documentFont;
-    
+   
 }
