@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class InventoryTester : MonoBehaviour
 {
-    public ItemSO[] itemSOs;
+    [SerializeField] private int ID;
+    [SerializeField] private ItemSO[] itemSO;
 
     void Start()
     {
@@ -16,9 +17,9 @@ public class InventoryTester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            for (int i = 0; i < itemSOs.Length; i++)
+            for (int i = 0; i < itemSO.Length; i++)
             {
-                InventoryManager.Instance.AddItemToInventory(itemSOs[i]);
+                InventoryManager.Instance.AddItemToInventory(itemSO[i]);
             }
         }
 

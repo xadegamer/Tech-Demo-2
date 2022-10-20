@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 1_Screwdriver
   m_EditorClassIdentifier: 
   ID: 1
+  oneAllowed: 1
   isStackable: 0
   itemName: Screwdriver
   itemDescription: Screwdriver

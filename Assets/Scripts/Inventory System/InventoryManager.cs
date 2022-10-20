@@ -47,6 +47,12 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItemToInventory(ItemSO itemSO)
     {
+        if (itemSO.oneAllowed && currentInventoryItems.Exists(item => item.itemSO == itemSO))
+        {
+            Debug.Log("Item already in inventory");
+            return;
+        }
+
         Item newItem = null;
         
         if (itemSO.isStackable)

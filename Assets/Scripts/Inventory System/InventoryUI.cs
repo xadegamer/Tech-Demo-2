@@ -101,6 +101,7 @@ public class InventoryUI : MonoBehaviour
 
     public void DisplayCurrentItemInfo()
     {
+        if (itemSlotsList.Count == 0) return;
         currentSlot = itemSlotsList[slotInFront];
         if (currentSlot.GetItem() == null) return;
 

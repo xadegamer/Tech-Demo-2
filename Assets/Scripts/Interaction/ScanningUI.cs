@@ -20,7 +20,7 @@ public class ScanningUI : MonoBehaviour
             gameObject.SetActive(true);
             ScannableObject scannableObject = ((GameObject)sender).GetComponent<ScannableObject>();
             nameText.text = scannableObject.scanName;
-            infoText.text = scannableObject.scanAffiliation;
+            infoText.text = scannableObject.scanDescription;
         } 
         else 
         {

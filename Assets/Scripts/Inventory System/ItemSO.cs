@@ -7,6 +7,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class ItemSO : ScriptableObject
 {
     public int ID;
+    public bool oneAllowed;
     public bool isStackable;
     public string itemName;
 

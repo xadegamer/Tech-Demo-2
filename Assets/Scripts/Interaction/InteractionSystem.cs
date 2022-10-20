@@ -71,7 +71,13 @@ public class InteractionSystem : MonoBehaviour
         }
     }
 
-    private void SetAllChildrenScanningSelected(GameObject gameObject, int layer)
+    public void ForceCloseUI()
+    {
+        lastActiveScannedGameObject = null;
+        OnScanningObjectChanged?.Invoke(null, EventArgs.Empty);
+    }
+
+    public void SetAllChildrenScanningSelected(GameObject gameObject, int layer)
     {
         gameObject.layer = layer;
 
