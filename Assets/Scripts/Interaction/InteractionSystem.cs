@@ -12,6 +12,7 @@ public class InteractionSystem : MonoBehaviour
     
     [SerializeField] private Transform playerCameraTranform;
     [SerializeField] private LayerMask interactLayerMask;
+    [SerializeField] private float scanningDistance;
     [SerializeField] private float interactDistance;
 
     private GameObject lastActiveScannedGameObject;
@@ -29,7 +30,7 @@ public class InteractionSystem : MonoBehaviour
 
     public void DetectObject()
     {      
-        if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, interactDistance, interactLayerMask))
+        if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, scanningDistance, interactLayerMask))
         {
             if (lastActiveScannedGameObject != raycastHit.collider.gameObject)
             {
@@ -46,7 +47,15 @@ public class InteractionSystem : MonoBehaviour
 
             if (Mouse.current.rightButton.wasPressedThisFrame && raycastHit.transform.TryGetComponent(out IInteractable interactable))
             {
-                interactable.Interact();
+                if (Vector3.Distance(transform.position, raycastHit.transform.position) < interactDistance)
+                {
+                    interactable.Interact();
+                }
+                else
+                {
+                    Debug.Log("Too far away to interact");
+                    // We are too far
+                }
             }
         }
         else
@@ -62,7 +71,7 @@ public class InteractionSystem : MonoBehaviour
 
     public void DetectInteractable()
     {
-        if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, interactDistance, interactLayerMask))
+        if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, scanningDistance, interactLayerMask))
         {
             if (raycastHit.transform.TryGetComponent(out IInteractable interactable))
             {

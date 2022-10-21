@@ -15,6 +15,9 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable
     [SerializeField] private string answer;
     [SerializeField] private int maxCharacter;
 
+    [Header("Effect")]
+    [SerializeField] private GameObject postProcessing;
+
     private void Awake()
     {
         Instance = this;
@@ -54,6 +57,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable
         InteractionSystem.Instance.ForceCloseUI();
         puzzleCam.SetActive(true);
         GameManager.Instance.DisableMovement();
+        postProcessing.SetActive(true);
         isActive = true;
     }
 
@@ -63,6 +67,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable
         GameManager.Instance.EnableMovement();
         isActive = false;
         InteractionSystem.Instance.enabled = true;
+        postProcessing.SetActive(false);
     }
 
     public void Interact()
