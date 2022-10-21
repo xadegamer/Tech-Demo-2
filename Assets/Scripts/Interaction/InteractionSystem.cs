@@ -80,8 +80,11 @@ public class InteractionSystem : MonoBehaviour
 
     public void SetAllChildrenScanningSelected(GameObject gameObject, int layer)
     {
-        gameObject.layer = layer;
-
+        if(gameObject.layer == LayerMask.NameToLayer("Scanning") || gameObject.layer == LayerMask.NameToLayer("Scannable"))
+        {
+            gameObject.layer = layer;
+        }
+        
         foreach (Transform child in gameObject.transform)
         {
             SetAllChildrenScanningSelected(child.gameObject, layer);

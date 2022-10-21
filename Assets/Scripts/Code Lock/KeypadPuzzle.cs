@@ -50,6 +50,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable
 
     public void EnterPuzzle()
     {
+        InteractionSystem.Instance.enabled = false;
         InteractionSystem.Instance.ForceCloseUI();
         puzzleCam.SetActive(true);
         GameManager.Instance.DisableMovement();
@@ -61,6 +62,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable
         puzzleCam.SetActive(false);
         GameManager.Instance.EnableMovement();
         isActive = false;
+        InteractionSystem.Instance.enabled = true;
     }
 
     public void Interact()
