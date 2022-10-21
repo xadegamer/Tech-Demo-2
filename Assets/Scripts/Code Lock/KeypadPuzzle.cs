@@ -10,6 +10,7 @@ public class KeypadPuzzle : MonoBehaviour
 
     [SerializeField] private TextMeshPro screenText;
     [SerializeField] private string answer;
+    [SerializeField] private int maxCharacter;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class KeypadPuzzle : MonoBehaviour
 
     public void EnterKey(int key)
     {
+        if (screenText.text.Length >= maxCharacter) return;
         screenText.text += key.ToString();
     }
     public void DeleteKey()
