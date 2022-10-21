@@ -30,20 +30,9 @@ public class InteractionSystem : MonoBehaviour
 
     public void DetectObject()
     {      
-        if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, scanningDistance, interactLayerMask))
+        if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, scanningDistance))
         {
-            if (lastActiveScannedGameObject != raycastHit.collider.gameObject)
-            {
-                if (lastActiveScannedGameObject != null)
-                {
-                    SetAllChildrenScanningSelected(lastActiveScannedGameObject, LayerMask.NameToLayer("Scannable"));
-                    lastActiveScannedGameObject = null;
-                }
-
-                lastActiveScannedGameObject = raycastHit.collider.gameObject;
-                SetAllChildrenScanningSelected(raycastHit.collider.gameObject, LayerMask.NameToLayer("Scanning"));
-                OnScanningObjectChanged?.Invoke(lastActiveScannedGameObject, EventArgs.Empty);
-            }
+            CheckForScannableObject(raycastHit);
 
             if (Mouse.current.rightButton.wasPressedThisFrame && raycastHit.transform.TryGetComponent(out IInteractable interactable))
             {
@@ -60,12 +49,38 @@ public class InteractionSystem : MonoBehaviour
         }
         else
         {
-            if (lastActiveScannedGameObject != null)
+            DeScanLastObject();
+        }
+    }
+
+    public void CheckForScannableObject(RaycastHit raycastHit)
+    {
+        if (raycastHit.collider.TryGetComponent(out ScannableObject scannableObject))
+        {
+            if (lastActiveScannedGameObject != raycastHit.collider.gameObject)
             {
-                SetAllChildrenScanningSelected(lastActiveScannedGameObject, LayerMask.NameToLayer("Scannable"));
-                lastActiveScannedGameObject = null;
+                if (lastActiveScannedGameObject != null)
+                {
+                    SetAllChildrenScanningSelected(lastActiveScannedGameObject, LayerMask.NameToLayer("Scannable"));
+                    lastActiveScannedGameObject = null;
+                }
+
+                lastActiveScannedGameObject = raycastHit.collider.gameObject;
+                SetAllChildrenScanningSelected(raycastHit.collider.gameObject, LayerMask.NameToLayer("Scanning"));
                 OnScanningObjectChanged?.Invoke(lastActiveScannedGameObject, EventArgs.Empty);
             }
+        }
+        else DeScanLastObject();
+    }
+    
+
+    public void DeScanLastObject()
+    {
+        if (lastActiveScannedGameObject != null)
+        {
+            SetAllChildrenScanningSelected(lastActiveScannedGameObject, LayerMask.NameToLayer("Scannable"));
+            lastActiveScannedGameObject = null;
+            OnScanningObjectChanged?.Invoke(lastActiveScannedGameObject, EventArgs.Empty);
         }
     }
 
@@ -87,16 +102,16 @@ public class InteractionSystem : MonoBehaviour
         OnScanningObjectChanged?.Invoke(null, EventArgs.Empty);
     }
 
-    public void SetAllChildrenScanningSelected(GameObject gameObject, int layer)
+    public void SetAllChildrenScanningSelected(GameObject gameObject, int layer, bool force = false)
     {
-        if(gameObject.layer == LayerMask.NameToLayer("Scanning") || gameObject.layer == LayerMask.NameToLayer("Scannable"))
+        if(force || gameObject.layer == LayerMask.NameToLayer("Scanning") || gameObject.layer == LayerMask.NameToLayer("Scannable"))
         {
             gameObject.layer = layer;
         }
         
         foreach (Transform child in gameObject.transform)
         {
-            SetAllChildrenScanningSelected(child.gameObject, layer);
+            SetAllChildrenScanningSelected(child.gameObject, layer, force);
         }
     }
 }

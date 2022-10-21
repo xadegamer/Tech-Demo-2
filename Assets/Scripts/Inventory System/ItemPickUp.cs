@@ -21,7 +21,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable
         scannableObject.scanName = itemSO.itemName;
         scannableObject.scanDescription = itemSO.itemDescription;
         item =  Instantiate(itemSO.itemPrefab, transform);
-        InteractionSystem.Instance.SetAllChildrenScanningSelected(item, LayerMask.NameToLayer("Scannable"));
+        InteractionSystem.Instance.SetAllChildrenScanningSelected(item, LayerMask.NameToLayer("Scannable"), true);
     }
 
     private void Update()

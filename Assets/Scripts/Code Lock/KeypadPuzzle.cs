@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.Events;
 
 public class KeypadPuzzle : MonoBehaviour, IInteractable
 {
@@ -14,6 +14,10 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable
     [SerializeField] private TextMeshPro screenText;
     [SerializeField] private string answer;
     [SerializeField] private int maxCharacter;
+
+    [SerializeField] UnityEvent OnCorrect;
+
+    [SerializeField] UnityEvent OnWrongCorrect;
 
     [Header("Effect")]
     [SerializeField] private GameObject postProcessing;
