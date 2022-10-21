@@ -4,10 +4,13 @@ using UnityEngine;
 using TMPro;
 using static UnityEngine.Rendering.DebugUI;
 
-public class KeypadPuzzle : MonoBehaviour
+public class KeypadPuzzle : MonoBehaviour, IInteractable
 {
     public static KeypadPuzzle Instance { get; private set; }
 
+    public bool isActive { get; private set; }
+
+    [SerializeField] GameObject puzzleCam;
     [SerializeField] private TextMeshPro screenText;
     [SerializeField] private string answer;
     [SerializeField] private int maxCharacter;
@@ -41,6 +44,27 @@ public class KeypadPuzzle : MonoBehaviour
         else
         {
             Debug.Log("Incorrect Code");
+            ExitPuzzle();
         }
+    }
+
+    public void EnterPuzzle()
+    {
+        InteractionSystem.Instance.ForceCloseUI();
+        puzzleCam.SetActive(true);
+        GameManager.Instance.DisableMovement();
+        isActive = true;
+    }
+
+    public void ExitPuzzle()
+    {
+        puzzleCam.SetActive(false);
+        GameManager.Instance.EnableMovement();
+        isActive = false;
+    }
+
+    public void Interact()
+    {
+        EnterPuzzle();
     }
 }

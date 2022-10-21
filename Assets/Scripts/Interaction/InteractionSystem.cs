@@ -73,6 +73,7 @@ public class InteractionSystem : MonoBehaviour
 
     public void ForceCloseUI()
     {
+        if (lastActiveScannedGameObject != null) SetAllChildrenScanningSelected(lastActiveScannedGameObject, LayerMask.NameToLayer("Scannable"));
         lastActiveScannedGameObject = null;
         OnScanningObjectChanged?.Invoke(null, EventArgs.Empty);
     }

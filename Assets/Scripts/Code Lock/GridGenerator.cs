@@ -118,6 +118,8 @@ public class GridGenerator : MonoBehaviour
     
     private void InputManager()
     {
+        if (!KeypadPuzzle.Instance.isActive) return;
+        
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) Input_Up();
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) Input_Down();
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) Input_Right();
