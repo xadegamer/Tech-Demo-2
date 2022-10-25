@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     }
     
     [SerializeField] private ControlMode currentControlMode = ControlMode.PlayerControl;
-
+    [SerializeField] private MeshRenderer playerRenderer;
     [SerializeField] private FirstPersonController player;
 
     private void Awake()
@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
     public void DisableMovement()
     {
         player.EnableMovement(false);
+    }
+
+    public void TogglePlayerVisual(bool state)
+    {
+        playerRenderer.enabled = state;
     }
 
     public ControlMode GetCurrentControlMode() => currentControlMode;

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 2_DeathSword
   m_EditorClassIdentifier: 
   ID: 2
+  oneAllowed: 0
   isStackable: 0
   itemName: DeathSword
   itemDescription: DeathSword
@@ -21,3 +22,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 2250849943691016930, guid: 84095b32291438a4eb3e4c0ee485738f,
     type: 3}
   maxAmount: 5
+  scanSize: 1

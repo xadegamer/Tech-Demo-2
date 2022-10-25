@@ -29,7 +29,11 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        LoadInventory();
+
+
+        inventoryData = new InventoryData();
+
+       // LoadInventory();
     }
     
     public void LoadInventory()
@@ -126,6 +130,6 @@ public class InventoryManager : MonoBehaviour
 
     public void SaveInventory()
     {
-        JsonSaveSystem.Save(saveID, inventoryData);
+     //   JsonSaveSystem.Save(saveID, inventoryData);
     }
 }

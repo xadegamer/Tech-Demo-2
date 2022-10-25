@@ -11,9 +11,15 @@ public class InteractionSystem : MonoBehaviour
     public event EventHandler OnScanningObjectChanged;
     
     [SerializeField] private Transform playerCameraTranform;
-    [SerializeField] private LayerMask interactLayerMask;
+
+    [Header("Scanning")]
     [SerializeField] private float scanningDistance;
+    [SerializeField] private Material highlightMaterial;
+
+    [Header("Interacting")]
+    [SerializeField] private float interactHoldDuration;
     [SerializeField] private float interactDistance;
+
 
     private GameObject lastActiveScannedGameObject;
 
@@ -24,7 +30,6 @@ public class InteractionSystem : MonoBehaviour
 
     void Update()
     {
- 
         DetectObject();
     }
 
@@ -33,19 +38,7 @@ public class InteractionSystem : MonoBehaviour
         if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, scanningDistance))
         {
             CheckForScannableObject(raycastHit);
-
-            if (Mouse.current.rightButton.wasPressedThisFrame && raycastHit.transform.TryGetComponent(out IInteractable interactable))
-            {
-                if (Vector3.Distance(transform.position, raycastHit.transform.position) < interactDistance)
-                {
-                    interactable.Interact();
-                }
-                else
-                {
-                    Debug.Log("Too far away to interact");
-                    // We are too far
-                }
-            }
+            DetectInteractable(raycastHit);
         }
         else
         {
@@ -55,7 +48,7 @@ public class InteractionSystem : MonoBehaviour
 
     public void CheckForScannableObject(RaycastHit raycastHit)
     {
-        if (raycastHit.collider.TryGetComponent(out ScannableObject scannableObject))
+        if (raycastHit.collider.TryGetComponent(out IScannable scannableObject))
         {
             if (lastActiveScannedGameObject != raycastHit.collider.gameObject)
             {
@@ -65,6 +58,7 @@ public class InteractionSystem : MonoBehaviour
                     lastActiveScannedGameObject = null;
                 }
 
+                highlightMaterial.SetFloat("_Multiply_Value", raycastHit.collider.GetComponent<IScannable>().ScanSize());
                 lastActiveScannedGameObject = raycastHit.collider.gameObject;
                 SetAllChildrenScanningSelected(raycastHit.collider.gameObject, LayerMask.NameToLayer("Scanning"));
                 OnScanningObjectChanged?.Invoke(lastActiveScannedGameObject, EventArgs.Empty);
@@ -84,18 +78,35 @@ public class InteractionSystem : MonoBehaviour
         }
     }
 
-    public void DetectInteractable()
+    public void DetectInteractable(RaycastHit raycastHit)
     {
-        if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, scanningDistance, interactLayerMask))
+        if (Mouse.current.rightButton.wasPressedThisFrame && raycastHit.transform.TryGetComponent(out IInteractable interactable))
         {
-            if (raycastHit.transform.TryGetComponent(out IInteractable interactable))
+            if (Vector3.Distance(transform.position, raycastHit.transform.position) < interactDistance)
             {
                 interactable.Interact();
             }
+            else
+            {
+                Debug.Log("Too far away to interact");
+            }
         }
+
+
+        //if (Vector3.Distance(transform.position, raycastHit.transform.position) < interactDistance)
+        //{
+        //    if (Input.GetKey(KeyCode.E) && raycastHit.transform.TryGetComponent(out IInteractable interactable))
+        //    {
+        //        if (InteractionUI.Instance.GetInteractBar().fillAmount < 1)
+        //        {
+        //            InteractionUI.Instance.GetInteractBar().fillAmount += 1 / interactHoldDuration * Time.deltaTime;
+        //            if (InteractionUI.Instance.GetInteractBar().fillAmount == 1) interactable.Interact();
+        //        }
+        //    }
+        //}
     }
 
-    public void ForceCloseUI()
+    public void ForceScanningCloseUI()
     {
         if (lastActiveScannedGameObject != null) SetAllChildrenScanningSelected(lastActiveScannedGameObject, LayerMask.NameToLayer("Scannable"));
         lastActiveScannedGameObject = null;
@@ -121,3 +132,9 @@ public interface IInteractable
     public void Interact();
 }
 
+public interface IScannable
+{
+    public string ScanName();
+    public string ScanDescription();
+    public float ScanSize();
+}

@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
-public class ItemPickUp : MonoBehaviour, IInteractable
+public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
 {
     [SerializeField] private ItemSO itemSO;
     [SerializeField] private float rotationSpeed = 1f;
@@ -31,13 +30,8 @@ public class ItemPickUp : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        CheckDistanceToPlayer();
-
-        return;
-
-
         InventoryManager.Instance.AddItemToInventory(itemSO);
-        InteractionSystem.Instance.ForceCloseUI();
+        InteractionSystem.Instance.ForceScanningCloseUI();
         Destroy(gameObject);
     }
 
@@ -45,4 +39,10 @@ public class ItemPickUp : MonoBehaviour, IInteractable
     {
         Debug.Log(Vector3.Distance(transform.position, InteractionSystem.Instance.transform.position));
     }
+
+    public string ScanName()=>  itemSO.itemName;
+
+    public string ScanDescription() => itemSO.itemDescription;
+
+    public float ScanSize() => itemSO.scanSize;
 }

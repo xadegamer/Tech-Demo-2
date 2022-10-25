@@ -18,9 +18,9 @@ public class ScanningUI : MonoBehaviour
         if (sender != null) 
         {
             gameObject.SetActive(true);
-            ScannableObject scannableObject = ((GameObject)sender).GetComponent<ScannableObject>();
-            nameText.text = scannableObject.scanName;
-            infoText.text = scannableObject.scanDescription;
+            IScannable scannableObject = ((GameObject)sender).GetComponent<IScannable>();
+            nameText.text = scannableObject.ScanName();
+            infoText.text = scannableObject.ScanDescription();
         } 
         else 
         {

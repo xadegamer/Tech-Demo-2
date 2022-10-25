@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 4_ToolBox
   m_EditorClassIdentifier: 
   ID: 4
+  oneAllowed: 0
   isStackable: 0
   itemName: ToolBox
   itemDescription: ToolBox
@@ -21,3 +22,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 3182486110745786267, guid: b0da59ac00b06e14bbcbb56add81d7a4,
     type: 3}
   maxAmount: 5
+  scanSize: 0.5

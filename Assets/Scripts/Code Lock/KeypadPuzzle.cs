@@ -4,23 +4,28 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 
-public class KeypadPuzzle : MonoBehaviour, IInteractable
+public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 {
     public static KeypadPuzzle Instance { get; private set; }
 
     public bool isActive { get; private set; }
 
-    [SerializeField] GameObject puzzleCam;
+    [SerializeField] private GameObject puzzleCam;
     [SerializeField] private TextMeshPro screenText;
     [SerializeField] private string answer;
     [SerializeField] private int maxCharacter;
 
-    [SerializeField] UnityEvent OnCorrect;
+    [SerializeField] private UnityEvent OnCorrect;
 
-    [SerializeField] UnityEvent OnWrongCorrect;
+    [SerializeField] private UnityEvent OnWrongCorrect;
 
     [Header("Effect")]
     [SerializeField] private GameObject postProcessing;
+
+    [Header("Scanning")]
+    [SerializeField] private string scanName;
+    [SerializeField] private string scanDescription;
+    [SerializeField] private float scanSize = 0.05f;
 
     private void Awake()
     {
@@ -58,8 +63,9 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable
     public void EnterPuzzle()
     {
         InteractionSystem.Instance.enabled = false;
-        InteractionSystem.Instance.ForceCloseUI();
+        InteractionSystem.Instance.ForceScanningCloseUI();
         puzzleCam.SetActive(true);
+        GameManager.Instance.TogglePlayerVisual(false);
         GameManager.Instance.DisableMovement();
         postProcessing.SetActive(true);
         isActive = true;
@@ -68,6 +74,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable
     public void ExitPuzzle()
     {
         puzzleCam.SetActive(false);
+        GameManager.Instance.TogglePlayerVisual(true);
         GameManager.Instance.EnableMovement();
         isActive = false;
         InteractionSystem.Instance.enabled = true;
@@ -78,4 +85,8 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable
     {
         EnterPuzzle();
     }
+
+    public string ScanName() => scanName;
+    public string ScanDescription() => scanDescription;
+    public float ScanSize() => scanSize;
 }

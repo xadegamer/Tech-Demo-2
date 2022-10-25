@@ -124,7 +124,7 @@ public class GridGenerator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) Input_Down();
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) Input_Right();
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) Input_Left();
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) Input_Click();
+        if (Input.GetKeyDown(KeyCode.Return)) Input_Click();
 
     }
 

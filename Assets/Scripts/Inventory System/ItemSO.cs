@@ -19,6 +19,9 @@ public class ItemSO : ScriptableObjectBase
     public GameObject itemPrefab;
     public int maxAmount;
 
+    [Header("Scanning")]
+    public float scanSize = 0.05f;
+
     public override int GetID()
     {
         return ID;
