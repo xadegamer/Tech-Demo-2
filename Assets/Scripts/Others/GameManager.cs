@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         DisableMovement();
+        InteractionUI.Instance.ToggleCursor(false);
     }
 
     public void PlayerControl()
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         EnableMovement();
+        InteractionUI.Instance.ToggleCursor(true);
     }
 
     public void EnableMovement()

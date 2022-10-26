@@ -30,7 +30,6 @@ public class InventoryManager : MonoBehaviour
     {
         Instance = this;
 
-
         inventoryData = new InventoryData();
 
        // LoadInventory();

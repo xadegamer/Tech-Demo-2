@@ -15,26 +15,19 @@ MonoBehaviour:
   ID: 0
   documentName: Intro Letter
   documentPages:
-  - 'Page 1
-
-
-    The BehaviorType of a Dialog determines whether multiple players
-    can interact with a dialog at once. The default value for this property is SinglePlayer.
+  - 'The BehaviorType of a Dialog determines whether multiple players can interact
+    with a dialog at once. The default value for this property is SinglePlayer.
 
 
     While
     a player is engaged with a dialog, the other players will see the dialog choices
     of the player who started the dialog, along with the responses.'
-  - 'Page 2
+  - 'MultiplePlayers
 
-
-    MultiplePlayers
-
-    When a Dialog is setto MultiplePlayers, any
-    player can initiate a dialog at any time, even if another player has already
-    initiated the dialog. Unlike SinglePlayer however, Dialogs set to MultiplePlayers
-    will not show the dialog choices and responses to anyone but the player in the
-    conversation.'
+    When a Dialog is setto MultiplePlayers, any player can
+    initiate a dialog at any time, even if another player has already initiated the
+    dialog. Unlike SinglePlayer however, Dialogs set to MultiplePlayers will not
+    show the dialog choices and responses to anyone but the player in the conversation.'
   documentIcon: {fileID: 0}
   documentColor: {r: 0, g: 0, b: 0, a: 0}
   documentPageTextSize: 21

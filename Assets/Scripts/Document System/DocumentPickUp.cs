@@ -10,12 +10,12 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        DocumentUI.Instance.ShowDocument(this);
+        DocumentViewUI.Instance.ShowDocument(this);
     }
 
     public void PickDocument()
     {
-        //DocumentManager.Instance.AddDocument(documentSO);
+        DocumentManager.Instance.AddDocument(documentSO);
         Destroy(gameObject);
     }
 }

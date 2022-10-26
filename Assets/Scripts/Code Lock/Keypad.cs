@@ -23,7 +23,6 @@ public class Keypad : MonoBehaviour
         visual.localScale = scale;
     }
 
-
     public void SetUp(KeyType keyType, int key = 0)
     {
         this.keyType = keyType;
@@ -35,11 +34,9 @@ public class Keypad : MonoBehaviour
                 textMeshPro.text = key.ToString();
                 break;
             case KeyType.Clear:
-                //textMeshPro.autoSizeTextContainer = false;
                 textMeshPro.text = keyType.ToString();
                 break;
             case KeyType.Delete:
-                //textMeshPro.autoSizeTextContainer = false;
                 textMeshPro.text = keyType.ToString();
                 break;
             case KeyType.Confirm:

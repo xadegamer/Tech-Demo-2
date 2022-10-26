@@ -27,6 +27,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private InventoryUISlot currentSlot;
     [SerializeField] bool isTurning = false;
     [SerializeField] bool isActivated = false;
+    [SerializeField] private Item selectedItem;
 
     private void Awake()
     {
@@ -146,8 +147,6 @@ public class InventoryUI : MonoBehaviour
         itemInfo.text = currentSlot.GetItem().itemSO.itemDescription;
     }
 
-
-
     public void RotateRight()
     {
         if (itemSlotsList.Count == 1) return;
@@ -160,6 +159,11 @@ public class InventoryUI : MonoBehaviour
         if (slotInFront == 0) slotInFront = itemSlotsList.Count;
         slotInFront = --slotInFront % itemSlotsList.Count;
         StartCoroutine(RotateInventoryWheel(-angleToRotate, wheelSpinSpeed));
+    }
+
+    public void SelectItem()
+    {
+        selectedItem = currentSlot.GetItem();
     }
 
     IEnumerator RotateInventoryWheel(float angle, float inTime)

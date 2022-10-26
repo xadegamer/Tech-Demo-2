@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
 
-public class DocumentUI : MonoBehaviour
+public class DocumentViewUI : MonoBehaviour
 {
-    public static DocumentUI Instance { get; private set; }
+    public static DocumentViewUI Instance { get; private set; }
 
     [Header("Document UI")]
     [SerializeField] private GameObject documentUI;
     [SerializeField] private TextMeshProUGUI documentTitle;
     [SerializeField] private TextMeshProUGUI documentInfo;
+    [SerializeField] private TextMeshProUGUI documentPage;
     [SerializeField] private GameObject nextPageButton;
 
     [Header("Document Clear UI")]
@@ -50,9 +50,11 @@ public class DocumentUI : MonoBehaviour
         this.documentPickUp = documentPickUp;
         currentDocumentSO = documentPickUp.GetDocument();
         documentTitle.text = currentDocumentSO.documentName;
+        documentPage.text = $" Page: {documentIndex + 1}/{currentDocumentSO.documentPages.Length}";
 
         documentInfo.fontSize = currentDocumentSO.documentPageTextSize;
         documentInfo.text = currentDocumentSO.documentPages[documentIndex];
+        
 
         nextPageButton.SetActive(currentDocumentSO.documentPages.Length > 0);
 
@@ -63,6 +65,7 @@ public class DocumentUI : MonoBehaviour
     {
         documentIndex = ++documentIndex % currentDocumentSO.documentPages.Length;
         documentInfo.text = currentDocumentSO.documentPages[documentIndex];
+        documentPage.text = $" Page: {documentIndex + 1}/{currentDocumentSO.documentPages.Length}";
     }
 
     public void ShowClearDocument()

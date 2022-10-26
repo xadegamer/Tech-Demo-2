@@ -8,6 +8,7 @@ public class InteractionUI : MonoBehaviour
     public static InteractionUI Instance { get; private set; }
 
     [SerializeField] private Image interactionImage;
+    [SerializeField] private Image cursor;
 
     private void Awake()
     {
@@ -21,7 +22,12 @@ public class InteractionUI : MonoBehaviour
 
     public void ToggleImage(bool toggle)
     {
-        gameObject.SetActive(toggle);
+        interactionImage.gameObject.SetActive(toggle);
+    }
+
+    public void ToggleCursor(bool toggle)
+    {
+        cursor.gameObject.SetActive(toggle);
     }
 
     public void SetBarValue(float value)
