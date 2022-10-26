@@ -7,19 +7,19 @@ public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
     [SerializeField] private ItemSO itemSO;
     [SerializeField] private float rotationSpeed = 1f;
     
-    private ScannableObject scannableObject;
     private GameObject item;
-
-    private void Awake()
-    {
-        scannableObject = GetComponent<ScannableObject>();
-    }
     
     void Start()
     {
-        scannableObject.scanName = itemSO.itemName;
-        scannableObject.scanDescription = itemSO.itemDescription;
-        item =  Instantiate(itemSO.itemPrefab, transform);
+        if (itemSO != null)
+        {
+            SetUp(itemSO);
+        }
+    }
+
+    public void SetUp(ItemSO itemSO)
+    {
+        item = Instantiate(itemSO.itemPrefab, transform);
         InteractionSystem.Instance.SetAllChildrenScanningSelected(item, LayerMask.NameToLayer("Scannable"), true);
     }
 
@@ -33,11 +33,6 @@ public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
         InventoryManager.Instance.AddItemToInventory(itemSO);
         InteractionSystem.Instance.ForceScanningCloseUI();
         Destroy(gameObject);
-    }
-
-    public void CheckDistanceToPlayer()
-    {
-        Debug.Log(Vector3.Distance(transform.position, InteractionSystem.Instance.transform.position));
     }
 
     public string ScanName()=>  itemSO.itemName;
