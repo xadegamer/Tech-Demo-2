@@ -50,12 +50,12 @@ public class InventoryUI : MonoBehaviour
             isActivated = !isActivated;
         }
         
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && isActivated && !isTurning)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && isActivated && !isTurning && itemSlotsList.Count > 1)
         {
             RotateLeft();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) && isActivated && !isTurning)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && isActivated && !isTurning && itemSlotsList.Count > 1)
         {
             RotateRight();
         }
@@ -149,7 +149,6 @@ public class InventoryUI : MonoBehaviour
 
     public void RotateRight()
     {
-        if (itemSlotsList.Count == 1) return;
         slotInFront = ++slotInFront % itemSlotsList.Count;
         StartCoroutine(RotateInventoryWheel(angleToRotate, wheelSpinSpeed));
     }
@@ -162,6 +161,11 @@ public class InventoryUI : MonoBehaviour
     }
 
     public void SelectItem()
+    {
+        selectedItem = currentSlot.GetItem();
+    }
+
+    public void DropItem()
     {
         selectedItem = currentSlot.GetItem();
     }
