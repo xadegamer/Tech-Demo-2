@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 0_Hammer
   m_EditorClassIdentifier: 
   ID: 0
+  oneAllowed: 0
   isStackable: 0
   itemName: Hammer
   itemDescription: Hammer
@@ -21,3 +22,9 @@ MonoBehaviour:
   itemPrefab: {fileID: 9162617514744234891, guid: fb75176824a91f744abc1ce46460c40c,
     type: 3}
   maxAmount: 0
+  scanSize: 0.05
+  inventorySpawnRot: {x: 0.393, y: -0.122, z: 1.155}
+  inventorySpawnScale: {x: 0.3, y: 0.3, z: 0.3}
+  equipmentSpawnPos: {x: 0.57, y: -0.44, z: 1.3}
+  equipmentSpawnRot: {x: -18.185, y: 212.035, z: 55.798}
+  equipmentSpawnScale: {x: 0.6, y: 0.6, z: 0.6}

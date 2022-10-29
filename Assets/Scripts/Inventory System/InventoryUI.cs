@@ -20,6 +20,9 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemInfo;
 
+    [Header("Events")]
+    public EventHandler<Item> OnInventorySlotSelected;
+
     [Header("Debug")]
     [SerializeField] List<InventoryUISlot> itemSlotsList = new List<InventoryUISlot>();
     [SerializeField] private float angleToRotate;
@@ -132,7 +135,11 @@ public class InventoryUI : MonoBehaviour
             inventoryUISlot.transform.position = newPos;
             itemSlotsList.Add(inventoryUISlot);
             
-            Instantiate(InventoryManager.Instance.GetInventoryItems()[i].itemSO.itemPrefab, inventoryUISlot.transform);
+            GameObject gameObject =  Instantiate(InventoryManager.Instance.GetInventoryItems()[i].itemSO.itemPrefab, inventoryUISlot.transform);
+            gameObject.transform.localScale = InventoryManager.Instance.GetInventoryItems()[i].itemSO.inventorySpawnScale;
+            InteractionSystem.Instance.SetAllChildrenScanningSelected(gameObject, LayerMask.NameToLayer("Inventory") , true);
+
+
             inventoryUISlot.SetItem(InventoryManager.Instance.GetInventoryItems()[i]);
         }
     }
@@ -163,6 +170,7 @@ public class InventoryUI : MonoBehaviour
     public void SelectItem()
     {
         selectedItem = currentSlot.GetItem();
+        OnInventorySlotSelected?.Invoke(this, selectedItem);
     }
 
     public void DropItem()

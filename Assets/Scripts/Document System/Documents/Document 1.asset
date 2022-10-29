@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   documentName: Intro Letter
+  documentDescription: A letter of welcome
   documentPages:
   - 'The BehaviorType of a Dialog determines whether multiple players can interact
     with a dialog at once. The default value for this property is SinglePlayer.
@@ -32,3 +33,4 @@ MonoBehaviour:
   documentColor: {r: 0, g: 0, b: 0, a: 0}
   documentPageTextSize: 21
   documentFont: {fileID: 0}
+  scanSize: 0.005

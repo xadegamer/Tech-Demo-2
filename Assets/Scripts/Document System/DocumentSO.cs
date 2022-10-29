@@ -8,6 +8,7 @@ public class DocumentSO : ScriptableObjectBase
 {
     public int ID;
     public string documentName;
+    public string documentDescription;
 
     [TextArea(5, 30)]
     public string[] documentPages;
@@ -18,6 +19,9 @@ public class DocumentSO : ScriptableObjectBase
     [Header("Font Setting")]
     public float documentPageTextSize;
     public TMP_FontAsset documentFont;
+
+    [Header("Scanning")]
+    public float scanSize = 0.005f;
 
     public override int GetID()
     {

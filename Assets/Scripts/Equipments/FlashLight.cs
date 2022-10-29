@@ -1,41 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class FlashLight : MonoBehaviour
+public class FlashLight : MonoBehaviour, IEquipment
 {
-    public bool isOn = false;
-    public GameObject lightSourse;
-    public AudioSource clickSound;
-    public bool failSafe = false;
-    // Start is called before the first frame update
+    [Header("FlashLight Settings")]
+    [SerializeField] private float brightness;
+    
+    [Header("FlashLight Events")]
+    [SerializeField] private UnityEvent OnFlashLightOn;
+    [SerializeField] private UnityEvent OnFlashLightOff;
+
+    [Header("FlashLight Ref")]
+    [SerializeField] private Light lightSourse;
+
+    [Header("Debug")]
+    [SerializeField] private bool isOn = false;
+    [SerializeField] private bool failSafe = false;
+    
     void Start()
     {
-        
+        lightSourse.enabled = isOn;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void Use()
     {
-        if (Input. GetMouseButtonDown (0))
+        if (failSafe) return;
+        isOn = !isOn;
+        lightSourse.enabled = isOn;
+
+        if (isOn)
         {
-            if(isOn == false && failSafe == false)
-            {
-                failSafe = true;
-                lightSourse.SetActive(true);
-                //  clickSound.Play();
-                isOn = true;
-                StartCoroutine(FailSafe());
-            }
-            if (isOn == true && failSafe == false)
-            {
-                failSafe = true;
-                lightSourse.SetActive(false);
-                //  clickSound.Play();
-                isOn = false;
-                StartCoroutine(FailSafe());
-            }
+            failSafe = false;
+            OnFlashLightOn?.Invoke();
+            StartCoroutine(FailSafe());
         }
+        else OnFlashLightOff?.Invoke();
     }
 
     IEnumerator FailSafe()

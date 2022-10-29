@@ -22,6 +22,15 @@ public class ItemSO : ScriptableObjectBase
     [Header("Scanning")]
     public float scanSize = 0.05f;
 
+    [Header("Inventory View Stats")]
+    public Vector3 inventorySpawnRot;
+    public Vector3 inventorySpawnScale = Vector3.one;
+
+    [Header("Equipment Stats")]
+    public Vector3 equipmentSpawnPos;
+    public Vector3 equipmentSpawnRot;
+    public Vector3 equipmentSpawnScale = Vector3.one;
+
     public override int GetID()
     {
         return ID;

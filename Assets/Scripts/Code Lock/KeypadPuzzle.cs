@@ -53,16 +53,20 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
     }
     public void DeleteKey()
     {
-        if(screenText.text.Length > 0) screenText.text = screenText.text.Substring(0, screenText.text.Length - 1);
+        if(!disableInput  && screenText.text.Length > 0) screenText.text = screenText.text.Substring(0, screenText.text.Length - 1);
     }
 
     public void Clear()
     {
-        screenText.text = "";
+        if (!disableInput) screenText.text = "";
     }
 
     public void Confirm()
     {
+        if (disableInput) return;
+
+        disableInput = true;
+
         if (screenText.text == answer)
         {
             StartCoroutine(CorrectCode());
@@ -90,7 +94,6 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     public IEnumerator CorrectCode()
     {
-        disableInput = true;
         OnCorrectInput.Invoke();
         screenText.color = Color.green;
         yield return new WaitForSeconds(correctInputDelay);
@@ -102,7 +105,6 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     public IEnumerator IncorrectCode()
     {
-        disableInput = true;
         screenText.color = Color.red;
         yield return new WaitForSeconds(wrongInputDelay);
         screenText.color = Color.white;
