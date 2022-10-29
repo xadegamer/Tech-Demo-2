@@ -50,7 +50,7 @@ Material:
     - Vector1_6E4C89EA: 0.1
     - Vector1_9B498ED2: 0.734
     - _Gradient_Noise_Scale: 0.1
-    - _Multiply_Value: 0.01
+    - _Multiply_Value: 0.05
     - _QueueControl: 1
     - _QueueOffset: 0
     m_Colors: []
