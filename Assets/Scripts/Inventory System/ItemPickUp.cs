@@ -8,6 +8,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
     [SerializeField] private float rotationSpeed = 1f;
     
     private GameObject item;
+    private ScanInfo scanInfo;
     
     void Start()
     {
@@ -40,4 +41,18 @@ public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
     public string ScanDescription() => itemSO.itemDescription;
 
     public float ScanSize() => itemSO.scanSize;
+
+    public ScanInfo GetScanInfo()
+    {
+        scanInfo = new ScanInfo();
+        scanInfo.scanName = itemSO.itemName;
+        scanInfo.scanDescription = itemSO.itemDescription;
+        scanInfo.scanSize = itemSO.scanSize;
+        return scanInfo;
+    }
+
+    public string GetInteractText()
+    {
+        return "Press [E] to pick up";
+    }
 }

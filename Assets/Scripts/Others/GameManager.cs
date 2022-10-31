@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using StarterAssets;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +14,8 @@ public class GameManager : MonoBehaviour
         PlayerControl,
         UIControl   
     }
-    
+
+    [SerializeField] private Image cursor;
     [SerializeField] private ControlMode currentControlMode = ControlMode.PlayerControl;
     [SerializeField] private MeshRenderer playerRenderer;
     [SerializeField] private FirstPersonController player;
@@ -41,7 +44,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         DisableMovement();
-        InteractionUI.Instance.ToggleCursor(false);
+        cursor.gameObject.SetActive(true);
     }
 
     public void PlayerControl()
@@ -49,7 +52,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         EnableMovement();
-        InteractionUI.Instance.ToggleCursor(true);
+        cursor.gameObject.SetActive(false);
     }
 
     public void EnableMovement()

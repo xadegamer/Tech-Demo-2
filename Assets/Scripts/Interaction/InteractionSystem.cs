@@ -58,7 +58,7 @@ public class InteractionSystem : MonoBehaviour
                     lastActiveScannedGameObject = null;
                 }
 
-                highlightMaterial.SetFloat("_Multiply_Value", raycastHit.collider.GetComponent<IScannable>().ScanSize());
+                highlightMaterial.SetFloat("_Multiply_Value", raycastHit.collider.GetComponent<IScannable>().GetScanInfo().scanSize);
                 lastActiveScannedGameObject = raycastHit.collider.gameObject;
                 SetAllChildrenScanningSelected(raycastHit.collider.gameObject, LayerMask.NameToLayer("Scanning"));
                 OnScanningObjectChanged?.Invoke(lastActiveScannedGameObject, EventArgs.Empty);
@@ -67,7 +67,6 @@ public class InteractionSystem : MonoBehaviour
         else DeScanLastObject();
     }
     
-
     public void DeScanLastObject()
     {
         if (lastActiveScannedGameObject != null)
@@ -80,7 +79,7 @@ public class InteractionSystem : MonoBehaviour
 
     public void DetectInteractable(RaycastHit raycastHit)
     {
-        if (Mouse.current.rightButton.wasPressedThisFrame && raycastHit.transform.TryGetComponent(out IInteractable interactable))
+        if (Input.GetKey(KeyCode.E) && raycastHit.transform.TryGetComponent(out IInteractable interactable))
         {
             if (Vector3.Distance(transform.position, raycastHit.transform.position) < interactDistance)
             {
@@ -92,7 +91,6 @@ public class InteractionSystem : MonoBehaviour
             }
         }
 
-
         //if (Vector3.Distance(transform.position, raycastHit.transform.position) < interactDistance)
         //{
         //    if (Input.GetKey(KeyCode.E) && raycastHit.transform.TryGetComponent(out IInteractable interactable))
@@ -102,7 +100,7 @@ public class InteractionSystem : MonoBehaviour
         //            InteractionUI.Instance.GetInteractBar().fillAmount += 1 / interactHoldDuration * Time.deltaTime;
         //            if (InteractionUI.Instance.GetInteractBar().fillAmount == 1) interactable.Interact();
         //        }
-        //    }
+        //    }  Mouse.current.rightButton.wasPressedThisFrame
         //}
     }
 
@@ -130,11 +128,18 @@ public class InteractionSystem : MonoBehaviour
 public interface IInteractable
 {
     public void Interact();
+    public string GetInteractText();
 }
 
 public interface IScannable
 {
-    public string ScanName();
-    public string ScanDescription();
-    public float ScanSize();
+    public ScanInfo GetScanInfo();
+}
+
+[Serializable]
+public class ScanInfo
+{
+    public string scanName;
+    public string scanDescription;
+    public float scanSize = 0.05f;
 }

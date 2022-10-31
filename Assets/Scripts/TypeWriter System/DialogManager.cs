@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
-using static DialogSO;
 
 public class DialogManager : MonoBehaviour
 {
@@ -23,15 +22,11 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogBoxText;
     [SerializeField] private float delay = 0.1f;
 
-    [Header("Dialog")]
-    [SerializeField] private Dialog[] dialogs;
-
     [Header("Debug")]
-    [SerializeField] private Dialog currentDialog;
+    private Dialog currentDialog;
     private TextMeshProUGUI dialogText;
     private string fullText;
     private string currentText = "";
-
     private bool isTyping = false;
     private bool isPlayingVoiceOver = false;
 
@@ -44,14 +39,12 @@ public class DialogManager : MonoBehaviour
     {
         dialogBoxText.text = "";
         dialogText = dialogBoxText;
-
-        PlayDialog(0);
     }
 
-    public void PlayDialog(int dialogIndex)
+    public void PlayDialog(Dialog dialog)
     {
-        currentDialog = dialogs[dialogIndex];
-        currentDialog.OnBegin.Invoke();
+        currentDialog = dialog;
+        currentDialog.OnBegin?.Invoke();
         popUpBox.SetActive(true);
         StartCoroutine(DialogRoutine(currentDialog.dialogObject.textSequences));
     }
@@ -75,7 +68,7 @@ public class DialogManager : MonoBehaviour
         isPlayingVoiceOver = false;
     }
 
-    IEnumerator DialogRoutine(TextSequence[] textSequences)
+    IEnumerator DialogRoutine( DialogSO.TextSequence[] textSequences)
     {
         for (int i = 0; i < textSequences.Length; i++)
         {
@@ -95,7 +88,7 @@ public class DialogManager : MonoBehaviour
         }
 
         popUpBox.SetActive(false);
-        currentDialog.OnFinsihed.Invoke();
+        currentDialog.OnFinsihed?.Invoke();
     }
     
     public void SkipDialog()

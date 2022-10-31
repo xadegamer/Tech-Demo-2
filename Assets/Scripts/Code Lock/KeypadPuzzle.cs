@@ -10,13 +10,25 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     public bool isActive { get; private set; }
 
-    [SerializeField] private GameObject puzzleCam;
+    [SerializeField] private bool useUI;
+
+    [Header("UI")]
+    [SerializeField] private GameObject screenTextFade;
+    [SerializeField] private TextMeshProUGUI screenTextText;
+
+    [Header("Mesh")]
     [SerializeField] private TextMeshPro screenText;
+
+    [Header("Properties")]
+    [SerializeField] private GameObject puzzleCam;
     [SerializeField] private string answer;
     [SerializeField] private int maxCharacter;
+    [SerializeField] private Color normalColour;
+    [SerializeField] private Color correctColor;
+    [SerializeField] private Color wrongColour;
 
+    [Header("Events")]
     [SerializeField] private UnityEvent OnCorrectInput;
-
     [SerializeField] private UnityEvent OnWrongInput;
 
     [Header("Effect")]
@@ -24,14 +36,15 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
     [SerializeField] private float correctInputDelay;
     [SerializeField] private float wrongInputDelay;
 
-
     [Header("Scanning")]
-    [SerializeField] private string scanName;
-    [SerializeField] private string scanDescription;
-    [SerializeField] private float scanSize = 0.05f;
+    [SerializeField] private ScanInfo scanInfo;
+
+    [Header("Interactiong")]
+    [SerializeField] private string actionText;
 
     private bool disableInput = false;
 
+    private string inputString = "";
 
     private void Awake()
     {
@@ -48,17 +61,26 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     public void EnterKey(int key)
     {
-        if (disableInput || screenText.text.Length >= maxCharacter) return;
-        screenText.text += key.ToString();
+        if (disableInput || inputString.Length >= maxCharacter) return;
+        inputString += key.ToString();
+        DisplayOnScreen(inputString);
     }
     public void DeleteKey()
     {
-        if(!disableInput  && screenText.text.Length > 0) screenText.text = screenText.text.Substring(0, screenText.text.Length - 1);
+        if (!disableInput && inputString.Length > 0)
+        {
+            inputString = inputString.Substring(0, inputString.Length - 1);
+            DisplayOnScreen(inputString);
+        }
     }
 
     public void Clear()
     {
-        if (!disableInput) screenText.text = "";
+        if (!disableInput)
+        {
+            inputString = "";
+            DisplayOnScreen(inputString);
+        }
     }
 
     public void Confirm()
@@ -67,7 +89,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
         disableInput = true;
 
-        if (screenText.text == answer)
+        if (inputString == answer)
         {
             StartCoroutine(CorrectCode());
         }
@@ -75,6 +97,20 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
         {
             StartCoroutine(IncorrectCode());
         }
+    }
+
+    public void DisplayOnScreen(string input)
+    {
+        if (useUI)
+        {
+            screenTextText.text = input;
+            screenTextFade.SetActive(input == "");
+        } else screenText.text = input;
+    }
+
+    public void SetDisplayColour(Color color)
+    {
+        if (useUI) screenTextText.color = color; else screenText.color = color;
     }
 
     public void EnterPuzzle()
@@ -95,32 +131,30 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
     public IEnumerator CorrectCode()
     {
         OnCorrectInput.Invoke();
-        screenText.color = Color.green;
+        SetDisplayColour(correctColor);
         yield return new WaitForSeconds(correctInputDelay);
-        screenText.color = Color.white;
-        screenText.text = "";
-        disableInput = false;
+        SetDisplayColour(normalColour);
+        Clear();
         ExitPuzzle();
     }
 
     public IEnumerator IncorrectCode()
     {
-        screenText.color = Color.red;
+        SetDisplayColour(wrongColour);
         yield return new WaitForSeconds(wrongInputDelay);
-        screenText.color = Color.white;
-        screenText.text = "";
         disableInput = false;
+        SetDisplayColour(normalColour);
+        Clear();
         OnWrongInput.Invoke();
     }
 
     public void ExitPuzzle()
     {
-        puzzleCam.SetActive(false);
-        
+        disableInput = false;
+        puzzleCam.SetActive(false);     
         GameManager.Instance.TogglePlayerVisual(true);
         GameManager.Instance.EnableMovement();
         GameManager.Instance.SwitchControl(GameManager.ControlMode.PlayerControl);
-
         isActive = false;
         InteractionSystem.Instance.enabled = true;
         postProcessing.SetActive(false);
@@ -131,7 +165,13 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
         EnterPuzzle();
     }
 
-    public string ScanName() => scanName;
-    public string ScanDescription() => scanDescription;
-    public float ScanSize() => scanSize;
+    public ScanInfo GetScanInfo()
+    {
+       return scanInfo;
+    }
+
+    public string GetInteractText()
+    {
+        return "Press [E] to interact";
+    }
 }

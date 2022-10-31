@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class DocumentPickUp : MonoBehaviour, IInteractable,IScannable
 {
     [SerializeField] private DocumentSO documentSO;
+
+    private ScanInfo scanInfo;
 
     public DocumentSO GetDocument() => documentSO;
 
@@ -19,18 +22,17 @@ public class DocumentPickUp : MonoBehaviour, IInteractable,IScannable
         Destroy(gameObject);
     }
 
-    public string ScanDescription()
+    public ScanInfo GetScanInfo()
     {
-        return documentSO.documentDescription;
+        scanInfo = new ScanInfo();
+        scanInfo.scanName = documentSO.documentName;
+        scanInfo.scanDescription = documentSO.documentDescription;
+        scanInfo.scanSize = documentSO.scanSize;
+        return scanInfo;
     }
 
-    public string ScanName()
+    public string GetInteractText()
     {
-        return documentSO.documentName;
-    }
-
-    public float ScanSize()
-    {
-        return documentSO.scanSize;
+        return "Press [E] to read";
     }
 }
