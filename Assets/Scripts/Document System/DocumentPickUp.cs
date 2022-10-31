@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class DocumentPickUp : MonoBehaviour, IInteractable,IScannable
 {
@@ -33,6 +32,6 @@ public class DocumentPickUp : MonoBehaviour, IInteractable,IScannable
 
     public string GetInteractText()
     {
-        return "Press [E] to read";
+        return "to read";
     }
 }

@@ -93,9 +93,11 @@ MonoBehaviour:
   postProcessing: {fileID: 0}
   correctInputDelay: 2
   wrongInputDelay: 2
-  scanName: Keypad Puzzle
-  scanDescription: Escape
-  scanSize: 0.01
+  scanInfo:
+    scanName: Keypad Puzzle (Grid)
+    scanDescription: Press [ E ] to interact
+    scanSize: 0.05
+  actionText: 
 --- !u!65 &117058343684068855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107,8 +109,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.14, z: 0}
+  m_Size: {x: 0.6870775, y: 1.0306224, z: 0.041457176}
+  m_Center: {x: 0.099993944, y: 0.103502095, z: -0.011772633}
 --- !u!1 &117058343991940781
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117058344248495135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.10000038, y: 0.086, z: -1.678}
+  m_LocalPosition: {x: 0.10000038, y: 0.086, z: -1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -747,7 +749,6 @@ GameObject:
   - component: {fileID: 117058345764873168}
   - component: {fileID: 117058345764873171}
   - component: {fileID: 117058345764873170}
-  - component: {fileID: 117058345764873169}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -820,16 +821,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &117058345764873169
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117058345764873183}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

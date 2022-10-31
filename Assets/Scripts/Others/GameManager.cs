@@ -30,12 +30,8 @@ public class GameManager : MonoBehaviour
         currentControlMode = mode;
         switch (currentControlMode)
         {
-            case ControlMode.PlayerControl:
-                PlayerControl();
-                break;
-            case ControlMode.UIControl:
-                UIControl();
-                break;
+            case ControlMode.PlayerControl: PlayerControl(); break;
+            case ControlMode.UIControl: UIControl(); break;
         }
     }
 
@@ -44,7 +40,9 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         DisableMovement();
-        cursor.gameObject.SetActive(true);
+        cursor.gameObject.SetActive(false);
+        InteractionSystem.Instance.enabled = false;
+        InteractionSystem.Instance.ForceScanningCloseUI();
     }
 
     public void PlayerControl()
@@ -52,7 +50,9 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         EnableMovement();
-        cursor.gameObject.SetActive(false);
+        cursor.gameObject.SetActive(true);
+        InteractionSystem.Instance.ForceScanningCloseUI();
+        InteractionSystem.Instance.enabled = true;
     }
 
     public void EnableMovement()

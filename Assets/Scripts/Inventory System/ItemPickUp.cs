@@ -53,6 +53,6 @@ public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
 
     public string GetInteractText()
     {
-        return "Press [E] to pick up";
+        return "to pick up";
     }
 }

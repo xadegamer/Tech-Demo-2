@@ -32,9 +32,6 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
 
     public void EnterPuzzle()
     {
-        InteractionSystem.Instance.enabled = false;
-        InteractionSystem.Instance.ForceScanningCloseUI();
-
         GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);
         GameManager.Instance.TogglePlayerVisual(false);
         GameManager.Instance.DisableMovement();
@@ -55,8 +52,6 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
         GameManager.Instance.TogglePlayerVisual(true);
         GameManager.Instance.EnableMovement();
         GameManager.Instance.SwitchControl(GameManager.ControlMode.PlayerControl);
-
-        InteractionSystem.Instance.enabled = true;
     }
 
     public void StartMiniGame()
@@ -202,7 +197,7 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
 
     public string GetInteractText()
     {
-        return "Press [E] to interact";
+        return "to interact";
     }
 }
 

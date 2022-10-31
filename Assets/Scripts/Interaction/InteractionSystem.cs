@@ -17,9 +17,7 @@ public class InteractionSystem : MonoBehaviour
     [SerializeField] private Material highlightMaterial;
 
     [Header("Interacting")]
-    [SerializeField] private float interactHoldDuration;
     [SerializeField] private float interactDistance;
-
 
     private GameObject lastActiveScannedGameObject;
 
@@ -34,7 +32,7 @@ public class InteractionSystem : MonoBehaviour
     }
 
     public void DetectObject()
-    {      
+    {
         if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, scanningDistance))
         {
             CheckForScannableObject(raycastHit);
@@ -90,18 +88,6 @@ public class InteractionSystem : MonoBehaviour
                 Debug.Log("Too far away to interact");
             }
         }
-
-        //if (Vector3.Distance(transform.position, raycastHit.transform.position) < interactDistance)
-        //{
-        //    if (Input.GetKey(KeyCode.E) && raycastHit.transform.TryGetComponent(out IInteractable interactable))
-        //    {
-        //        if (InteractionUI.Instance.GetInteractBar().fillAmount < 1)
-        //        {
-        //            InteractionUI.Instance.GetInteractBar().fillAmount += 1 / interactHoldDuration * Time.deltaTime;
-        //            if (InteractionUI.Instance.GetInteractBar().fillAmount == 1) interactable.Interact();
-        //        }
-        //    }  Mouse.current.rightButton.wasPressedThisFrame
-        //}
     }
 
     public void ForceScanningCloseUI()
@@ -129,6 +115,8 @@ public interface IInteractable
 {
     public void Interact();
     public string GetInteractText();
+
+    //public bool CanInteract();
 }
 
 public interface IScannable

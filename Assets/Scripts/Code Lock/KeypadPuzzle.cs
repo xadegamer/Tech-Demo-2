@@ -43,7 +43,6 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
     [SerializeField] private string actionText;
 
     private bool disableInput = false;
-
     private string inputString = "";
 
     private void Awake()
@@ -115,11 +114,8 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     public void EnterPuzzle()
     {
-        InteractionSystem.Instance.enabled = false;
-        InteractionSystem.Instance.ForceScanningCloseUI();
-        
         puzzleCam.SetActive(true);
-
+        
         GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);
 
         GameManager.Instance.TogglePlayerVisual(false);
@@ -156,7 +152,6 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
         GameManager.Instance.EnableMovement();
         GameManager.Instance.SwitchControl(GameManager.ControlMode.PlayerControl);
         isActive = false;
-        InteractionSystem.Instance.enabled = true;
         postProcessing.SetActive(false);
     }
 
@@ -172,6 +167,6 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     public string GetInteractText()
     {
-        return "Press [E] to interact";
+        return "to interact";
     }
 }

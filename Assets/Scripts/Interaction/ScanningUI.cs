@@ -38,7 +38,7 @@ public class ScanningUI : MonoBehaviour
 
             if (((GameObject)sender).TryGetComponent(out IInteractable interactableObject))
             {
-                actionText.text = interactableObject.GetInteractText();
+                actionText.text = "Press" + "<color=yellow> [E] </color>" + interactableObject.GetInteractText();
                 interactionUI.SetActive(true);
             }
         } 
