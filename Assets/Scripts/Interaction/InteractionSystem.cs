@@ -77,7 +77,7 @@ public class InteractionSystem : MonoBehaviour
 
     public void DetectInteractable(RaycastHit raycastHit)
     {
-        if (Input.GetKey(KeyCode.E) && raycastHit.transform.TryGetComponent(out IInteractable interactable))
+        if (Input.GetKeyDown(KeyCode.E) && raycastHit.transform.TryGetComponent(out IInteractable interactable))
         {
             if (Vector3.Distance(transform.position, raycastHit.transform.position) < interactDistance)
             {

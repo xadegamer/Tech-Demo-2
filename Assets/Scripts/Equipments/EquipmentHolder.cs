@@ -13,14 +13,13 @@ public class EquipmentHolder : MonoBehaviour
     void Start()
     {
         InventoryUI.Instance.OnInventorySlotSelected += InventoryUI_OnInventorySlotSelected;
-        
-       // equipment = transform.GetChild(0).GetComponent<IEquipment>();
     }
 
     private void InventoryUI_OnInventorySlotSelected(object sender, Item item)
     {
         if (eqquipedItem != null) UnEquipLastItem();
-        EquipNewItem(item);
+
+        if (item != null) EquipNewItem(item);
     }
 
     public void UnEquipLastItem()
