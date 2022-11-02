@@ -40,7 +40,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: d0e2fc18fe036412f8223b3b3d9ad574,
+    customRenderPipeline: {fileID: 11400000, guid: ab238d1bdedc639409535ab4c6e98e4c,
       type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
@@ -77,7 +77,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: e1260c1148f6143b28bae5ace5e9c5d1,
+    customRenderPipeline: {fileID: 11400000, guid: 5924cc5f67026ee49b14a9c163f10a4d,
       type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
@@ -95,7 +95,7 @@ QualitySettings:
     skinWeights: 255
     textureQuality: 0
     anisotropicTextures: 2
-    antiAliasing: 0
+    antiAliasing: 4
     softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 1
@@ -114,7 +114,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 791b707f8c56c3c439cdf1e8977a149a,
+    customRenderPipeline: {fileID: 11400000, guid: 525f681d4db9db04794afef774955f91,
       type: 2}
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:

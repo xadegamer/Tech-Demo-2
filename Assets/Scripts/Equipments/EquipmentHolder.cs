@@ -10,9 +10,19 @@ public class EquipmentHolder : MonoBehaviour
     public GameObject itemObject;
     public IEquipment equipment;
 
+    Animator a;
+
     void Start()
     {
         InventoryUI.Instance.OnInventorySlotSelected += InventoryUI_OnInventorySlotSelected;
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && equipment != null)
+        {
+            equipment.Use();
+        }
     }
 
     private void InventoryUI_OnInventorySlotSelected(object sender, Item item)
@@ -39,11 +49,26 @@ public class EquipmentHolder : MonoBehaviour
         InteractionSystem.Instance.SetAllChildrenScanningSelected(itemObject, LayerMask.NameToLayer("Equipment"));
     }
     
-    void Update()
+    private void MovementAnimation()
     {
-        if (Input.GetMouseButtonDown(0) && equipment != null)
+        //Checking Movement
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
-            equipment.Use();
+            a.SetFloat("Mag", 1);
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                a.SetBool("Running", true);
+            }
+            else
+            {
+                a.SetBool("Running", false);
+            }
+        }
+        else
+        {
+            a.SetBool("Running", false);
+            a.SetFloat("Mag", 0);
         }
     }
 }

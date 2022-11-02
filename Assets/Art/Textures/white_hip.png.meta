@@ -1,0 +1,605 @@
+fileFormatVersion: 2
+guid: 61e2a870c22fc1445adf0e0504ff6574
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7262254697673411131
+    second: white_hip_0
+  - first:
+      213: 4326840645325966270
+    second: white_hip_5
+  - first:
+      213: 3599142450299905916
+    second: white_hip_6
+  - first:
+      213: 8669703197470236699
+    second: white_hip_7
+  - first:
+      213: -2232552889970145221
+    second: white_hip_10
+  - first:
+      213: 8802727777542541505
+    second: white_hip_11
+  - first:
+      213: -4008122849961171287
+    second: white_hip_12
+  - first:
+      213: -1723072941477758242
+    second: white_hip_13
+  - first:
+      213: 2553929310788493778
+    second: white_hip_14
+  - first:
+      213: -4723842097617649396
+    second: white_hip_15
+  - first:
+      213: 273785823242081947
+    second: white_hip_16
+  - first:
+      213: 4510293532136848525
+    second: white_hip_17
+  - first:
+      213: 3356965436311143072
+    second: white_hip_18
+  - first:
+      213: -570914302860801025
+    second: white_hip_19
+  - first:
+      213: 6666491388384577885
+    second: white_hip_20
+  - first:
+      213: 34915406692403462
+    second: white_hip_21
+  - first:
+      213: -3269031745854916363
+    second: white_hip_22
+  - first:
+      213: -9198546640361186891
+    second: white_hip_23
+  - first:
+      213: -9157050765566528349
+    second: white_hip_1
+  - first:
+      213: 6300974198595169944
+    second: white_hip_2
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 2
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: white_hip_0
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 2092
+        width: 514
+        height: 493
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a346da8fbf62fe4bb0904cf908c4451
+      internalID: -7262254697673411131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_5
+      rect:
+        serializedVersion: 2
+        x: 2206
+        y: 2337
+        width: 158
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09d14108548b18745a77d56af447f31c
+      internalID: 4326840645325966270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_6
+      rect:
+        serializedVersion: 2
+        x: 2544
+        y: 2337
+        width: 158
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1ffd0f3d75fda24ca731cd1153e1c17
+      internalID: 3599142450299905916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_12
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 1117
+        width: 459
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad800271e86b5fa4e8debcc8a4046609
+      internalID: -4008122849961171287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_13
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 1132
+        width: 437
+        height: 430
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e274147fb4c393e44b68e30c19dd1f7c
+      internalID: -1723072941477758242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_14
+      rect:
+        serializedVersion: 2
+        x: 2224
+        y: 1117
+        width: 459
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec16e313034309c4686683f94fc04354
+      internalID: 2553929310788493778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_15
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 402
+        width: 366
+        height: 245
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d2676c2386c20c46aeef9763d6d320f
+      internalID: -4723842097617649396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_16
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 414
+        width: 92
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e266f90dba196f449bafd3eb4146d4a
+      internalID: 273785823242081947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_17
+      rect:
+        serializedVersion: 2
+        x: 1395
+        y: 414
+        width: 91
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f19f2a2172b8a004eb9e13c8435cd6f7
+      internalID: 4510293532136848525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_18
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 414
+        width: 91
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a361790586d2b043a15915ab6e3b480
+      internalID: 3356965436311143072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_19
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 414
+        width: 92
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5feb95f04595de447a87d9b660df17b9
+      internalID: -570914302860801025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_20
+      rect:
+        serializedVersion: 2
+        x: 2344
+        y: 606
+        width: 220
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8ceef7f2b114324fb0ce3d132b3e373
+      internalID: 6666491388384577885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_21
+      rect:
+        serializedVersion: 2
+        x: 1519
+        y: 500
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e21ddc073d1b5914c86434a2737cd000
+      internalID: 34915406692403462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_22
+      rect:
+        serializedVersion: 2
+        x: 2430
+        y: 524
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 855b77f4fe6cc6d4d9bd3997d7e1fdc5
+      internalID: -3269031745854916363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_23
+      rect:
+        serializedVersion: 2
+        x: 2344
+        y: 401
+        width: 220
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc782d3f674885b4083e4da8983571ff
+      internalID: -9198546640361186891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_1
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 2097
+        width: 514
+        height: 493
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f154ffc633f4f41a2a60ca0dd08ff4
+      internalID: -9157050765566528349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_hip_2
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 2153
+        width: 134
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aaf6bcd0e79ffa4491aa136b0d0eb01
+      internalID: 6300974198595169944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      white_hip_13: -1723072941477758242
+      white_hip_19: -570914302860801025
+      white_hip_2: 6300974198595169944
+      white_hip_0: -7262254697673411131
+      white_hip_22: -3269031745854916363
+      white_hip_16: 273785823242081947
+      white_hip_17: 4510293532136848525
+      white_hip_1: -9157050765566528349
+      white_hip_18: 3356965436311143072
+      white_hip_6: 3599142450299905916
+      white_hip_14: 2553929310788493778
+      white_hip_20: 6666491388384577885
+      white_hip_12: -4008122849961171287
+      white_hip_15: -4723842097617649396
+      white_hip_21: 34915406692403462
+      white_hip_23: -9198546640361186891
+      white_hip_5: 4326840645325966270
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

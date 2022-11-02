@@ -20,6 +20,11 @@ public class SettingsManager : MonoBehaviour
 
     void Start()
     {
+        SetUpResolution();
+    }
+
+    public void SetUpResolution()
+    {
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -29,11 +34,10 @@ public class SettingsManager : MonoBehaviour
         int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width +"x" + resolutions[i].height;
+            string option = resolutions[i].width + "x" + resolutions[i].height;
             options.Add(option);
 
-            if(resolutions[i].width == Screen.currentResolution.width &&
-               resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
             }
@@ -43,6 +47,7 @@ public class SettingsManager : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
+    
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];

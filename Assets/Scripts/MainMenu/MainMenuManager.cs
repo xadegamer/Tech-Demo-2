@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     public GameObject MainMenuCam;
+    public GameObject SettingsCam;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,14 +21,14 @@ public class MainMenuManager : MonoBehaviour
     }
     public void MainMenu()
     {
-        MainMenuCam.GetComponent<Animator>().SetBool("MainMenu", true);
-        MainMenuCam.GetComponent<Animator>().SetBool("Settings", false);
+        SettingsCam.SetActive(false);
+        MainMenuCam.SetActive(true);
     }
 
     public void LoadSetings()
     {
-        MainMenuCam.GetComponent<Animator>().SetBool("Settings", true);
-        MainMenuCam.GetComponent<Animator>().SetBool("MainMenu", false);
+        SettingsCam.SetActive(true);
+        MainMenuCam.SetActive(false);
     }
 
     public void LoadGame(int levelToLoad)
