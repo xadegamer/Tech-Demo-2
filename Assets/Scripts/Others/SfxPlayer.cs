@@ -6,7 +6,6 @@ using UnityEngine;
 public class SfxPlayer : MonoBehaviour
 {
     [Header("Pitch Settings")]
-    [SerializeField] private bool randomizePitch = false;
     [SerializeField] private float pitchRange = 0.2f;
 
     [Header("Group Clips")]

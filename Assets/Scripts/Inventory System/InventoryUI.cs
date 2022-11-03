@@ -18,11 +18,17 @@ public class InventoryUI : MonoBehaviour
 
     [Header("Info")]
     [SerializeField] private GameObject infoUI;
+    [SerializeField] private GameObject noItemUi;
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemInfo;
+    [SerializeField] private TextMeshProUGUI itemCountInfo;
+    [SerializeField] private GameObject equipButton;
+    [SerializeField] private GameObject unEquipButton;
+
 
     [Header("Events")]
     public EventHandler<Item> OnInventorySlotSelected;
+    public EventHandler<Item> OnItemDropped;
 
     [Header("Debug")]
     [SerializeField] List<InventoryUISlot> itemSlotsList = new List<InventoryUISlot>();
@@ -51,8 +57,9 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (isActivated) CloseInventory(); else OpenInventory();
             isActivated = !isActivated;
+
+            if (isActivated) OpenInventory();  else CloseInventory();
         }
         
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -102,10 +109,12 @@ public class InventoryUI : MonoBehaviour
     {
         InventoryUISlot inventoryUISlot = GetInventorySlotWithItem(sender as Item);
 
-        itemSlotsList.Remove(GetInventorySlotWithItem(sender as Item));
-        
-        Destroy(inventoryUISlot.gameObject);
+        if (inventoryUISlot == null)  return;
 
+        itemSlotsList.Remove(inventoryUISlot);
+
+        Destroy(inventoryUISlot.gameObject);
+    
         ResetWheel();
 
         slotInFront = 0;
@@ -119,6 +128,7 @@ public class InventoryUI : MonoBehaviour
         if (itemSlotsList.Count == 0)
         {
             infoUI.SetActive(false);
+            noItemUi.SetActive(true);
             return;
         }
 
@@ -158,16 +168,18 @@ public class InventoryUI : MonoBehaviour
             inventoryUISlot.gameObject.name = "Slot " + i;
             inventoryUISlot.transform.position = newPos;
             itemSlotsList.Add(inventoryUISlot);
-            
-            GameObject gameObject =  Instantiate(InventoryManager.Instance.GetInventoryItems()[i].itemSO.itemPrefab, inventoryUISlot.transform);
-            gameObject.transform.localScale = InventoryManager.Instance.GetInventoryItems()[i].itemSO.inventorySpawnScale;
-            InteractionSystem.Instance.SetAllChildrenScanningSelected(gameObject, LayerMask.NameToLayer("Inventory") , true);
 
+            ItemSO itemSO = InventoryManager.Instance.GetInventoryItems()[i].itemSO;
+
+            GameObject gameObject =  Instantiate(itemSO.itemPrefab, inventoryUISlot.transform);
+            gameObject.transform.localScale = new Vector3(itemSO.inventorySpawnScale, itemSO.inventorySpawnScale, itemSO.inventorySpawnScale);
+            InteractionSystem.Instance.SetAllChildrenScanningSelected(gameObject, LayerMask.NameToLayer("Inventory") , true);
 
             inventoryUISlot.SetItem(InventoryManager.Instance.GetInventoryItems()[i]);
         }
 
         infoUI.SetActive(howMany > 0);
+        noItemUi.SetActive(howMany == 0);
     }
 
     public void DisplayCurrentItemInfo()
@@ -178,6 +190,12 @@ public class InventoryUI : MonoBehaviour
 
         itemName.text = currentSlot.GetItem().itemSO.itemName;
         itemInfo.text = currentSlot.GetItem().itemSO.itemDescription;
+
+        if (currentSlot.GetItem().itemSO.isStackable) itemCountInfo.text = currentSlot.GetItem().itemData.amount + " / " + currentSlot.GetItem().itemSO.maxAmount;
+        else itemCountInfo.text = "";
+
+        equipButton.SetActive(currentSlot.GetItem() != selectedItem);
+        unEquipButton.SetActive(currentSlot.GetItem() == selectedItem);
     }
 
     public void RotateRight()
@@ -195,16 +213,18 @@ public class InventoryUI : MonoBehaviour
         StartCoroutine(RotateInventoryWheel(-angleToRotate, wheelSpinSpeed));
     }
 
-    public void SelectItem()
+    public void EquipItem(bool toggle)
     {
-        selectedItem = currentSlot.GetItem();
+        selectedItem = toggle ? currentSlot.GetItem() : null;
         OnInventorySlotSelected?.Invoke(this, selectedItem);
         CloseInventory();
     }
 
     public void DropItem()
     {
+        OnItemDropped?.Invoke(this, currentSlot.GetItem());
         InventoryManager.Instance.RemoveItemFromInventory(currentSlot.GetItem());
+        CloseInventory();
     }
 
     IEnumerator RotateInventoryWheel(float angle, float inTime)
@@ -242,6 +262,11 @@ public class InventoryUI : MonoBehaviour
     public InventoryUISlot GetInventorySlotWithItem(Item item)
     {
         return itemSlotsList.Find(x => x.GetItem() == item);
+    }
+
+    public void ResetSelectedItem()
+    {
+        selectedItem = null;
     }
 
     #region Old Code

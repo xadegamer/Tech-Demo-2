@@ -22,9 +22,10 @@ MonoBehaviour:
   itemPrefab: {fileID: 5236431811727158436, guid: 23ab9227131d016438a3ebb02fc42775,
     type: 3}
   maxAmount: 5
-  scanSize: 0.1
+  scanSize: 0.05
   inventorySpawnRot: {x: 0, y: 0, z: 0}
-  inventorySpawnScale: {x: 1, y: 1, z: 1}
+  inventorySpawnScale: 1
+  pickupScale: 2
   equipmentSpawnPos: {x: 0.128, y: -0.086, z: 0.334}
   equipmentSpawnRot: {x: 0, y: 0, z: 0}
-  equipmentSpawnScale: {x: 1, y: 1, z: 1}
+  equipmentSpawnScale: 1

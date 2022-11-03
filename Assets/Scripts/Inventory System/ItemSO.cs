@@ -24,12 +24,15 @@ public class ItemSO : ScriptableObjectBase
 
     [Header("Inventory View Stats")]
     public Vector3 inventorySpawnRot;
-    public Vector3 inventorySpawnScale = Vector3.one;
+    public float inventorySpawnScale = 0.1f;
+
+    [Header("PickUp Stats")]
+    public float pickupScale = 0.1f;
 
     [Header("Equipment Stats")]
     public Vector3 equipmentSpawnPos;
     public Vector3 equipmentSpawnRot;
-    public Vector3 equipmentSpawnScale = Vector3.one;
+    public float equipmentSpawnScale = 1;
 
     public override int GetID()
     {

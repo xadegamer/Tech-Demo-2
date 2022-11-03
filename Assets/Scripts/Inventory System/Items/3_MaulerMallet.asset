@@ -24,7 +24,8 @@ MonoBehaviour:
   maxAmount: 5
   scanSize: 1
   inventorySpawnRot: {x: 0, y: 0, z: 0}
-  inventorySpawnScale: {x: 0.2, y: 0.2, z: 0.2}
+  inventorySpawnScale: 0.2
+  pickupScale: 0.2
   equipmentSpawnPos: {x: 0, y: 0, z: 0}
   equipmentSpawnRot: {x: 0, y: 0, z: 0}
-  equipmentSpawnScale: {x: 1, y: 1, z: 1}
+  equipmentSpawnScale: 0.6

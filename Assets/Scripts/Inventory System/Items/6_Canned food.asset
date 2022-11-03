@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02af5441f47ecb44897d95c72c943e62, type: 3}
+  m_Name: 6_Canned food
+  m_EditorClassIdentifier: 
+  ID: 6
+  oneAllowed: 0
+  isStackable: 1
+  itemName: Canned Food
+  itemDescription: Eat me
+  itemIcon: {fileID: 0}
+  itemColor: {r: 0, g: 0, b: 0, a: 0}
+  itemPrefab: {fileID: 4448829739309451363, guid: 2ed101d5060667744a18a04e5597e70e,
+    type: 3}
+  maxAmount: 5
+  scanSize: 0.05
+  inventorySpawnRot: {x: 0, y: 0, z: 0}
+  inventorySpawnScale: 1
+  pickupScale: 2
+  equipmentSpawnPos: {x: 0.128, y: -0.086, z: 0.334}
+  equipmentSpawnRot: {x: 0, y: 0, z: 0}
+  equipmentSpawnScale: 1

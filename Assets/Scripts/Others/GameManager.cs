@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ControlMode currentControlMode = ControlMode.PlayerControl;
     [SerializeField] private MeshRenderer playerRenderer;
     [SerializeField] private FirstPersonController player;
+    [SerializeField] private GameObject equipmentHolder;
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         cursor.gameObject.SetActive(false);
         InteractionSystem.Instance.enabled = false;
         InteractionSystem.Instance.ForceScanningCloseUI();
+        equipmentHolder.SetActive(false);
     }
 
     public void PlayerControl()
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
         cursor.gameObject.SetActive(true);
         InteractionSystem.Instance.ForceScanningCloseUI();
         InteractionSystem.Instance.enabled = true;
+        equipmentHolder.SetActive(true);
     }
 
     public void EnableMovement()

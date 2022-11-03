@@ -93,11 +93,9 @@ public class InventoryManager : MonoBehaviour
     {
         if (item.itemSO.isStackable)
         {
-            if (item.itemData.amount > 1)
-            {
-                item.itemData.amount--;
-            }
-            else
+            item.itemData.amount--;
+            
+            if (item.itemData.amount <= 0)
             {
                 currentInventoryItems.Remove(item);
                 inventoryData.ItemDataList.Remove(item.itemData);

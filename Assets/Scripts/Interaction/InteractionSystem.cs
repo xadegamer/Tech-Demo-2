@@ -12,6 +12,8 @@ public class InteractionSystem : MonoBehaviour
     
     [SerializeField] private Transform playerCameraTranform;
 
+    [SerializeField] private LayerMask detectLayer;
+
     [Header("Scanning")]
     [SerializeField] private float scanningDistance;
     [SerializeField] private Material highlightMaterial;
@@ -33,8 +35,9 @@ public class InteractionSystem : MonoBehaviour
 
     public void DetectObject()
     {
-        if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, scanningDistance))
+        if (Physics.Raycast(playerCameraTranform.position, playerCameraTranform.forward, out RaycastHit raycastHit, scanningDistance, detectLayer))
         {
+            Debug.DrawLine(playerCameraTranform.position, raycastHit.point, Color.green);
             CheckForScannableObject(raycastHit);
             DetectInteractable(raycastHit);
         }
@@ -104,10 +107,7 @@ public class InteractionSystem : MonoBehaviour
             gameObject.layer = layer;
         }
         
-        foreach (Transform child in gameObject.transform)
-        {
-            SetAllChildrenScanningSelected(child.gameObject, layer, force);
-        }
+        foreach (Transform child in gameObject.transform) SetAllChildrenScanningSelected(child.gameObject, layer, force);
     }
 }
 

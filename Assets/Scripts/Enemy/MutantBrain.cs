@@ -13,7 +13,6 @@ public class MutantBrain : MonoBehaviour
         theAgent = Npc.gameObject.GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 

@@ -5,28 +5,17 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
 {
     [SerializeField] private ItemSO itemSO;
-    [SerializeField] private float rotationSpeed = 1f;
-    
-    private GameObject item;
     private ScanInfo scanInfo;
-    
+
     void Start()
     {
-        if (itemSO != null)
-        {
-            SetUp(itemSO);
-        }
+        InteractionSystem.Instance.SetAllChildrenScanningSelected(gameObject, LayerMask.NameToLayer("Scannable"), true);
     }
-
+    
     public void SetUp(ItemSO itemSO)
     {
-        item = Instantiate(itemSO.itemPrefab, transform);
-        InteractionSystem.Instance.SetAllChildrenScanningSelected(item, LayerMask.NameToLayer("Scannable"), true);
-    }
-
-    private void Update()
-    {
-        item.transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime);
+        this.itemSO = itemSO;
+        InteractionSystem.Instance.SetAllChildrenScanningSelected(gameObject, LayerMask.NameToLayer("Scannable"), true);
     }
 
     public void Interact()

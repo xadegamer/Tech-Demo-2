@@ -6,16 +6,18 @@ using UnityEngine;
 
 public class EquipmentHolder : MonoBehaviour
 {
-    public Item eqquipedItem;
-    public GameObject itemObject;
-    public IEquipment equipment;
+    [SerializeField] private Item eqquipedItem;
+    [SerializeField] private GameObject itemObject;
+    [SerializeField] private IEquipment equipment;
 
     Animator a;
 
     void Start()
     {
         InventoryUI.Instance.OnInventorySlotSelected += InventoryUI_OnInventorySlotSelected;
+        InventoryManager.Instance.OnObjectRemoved += InventoryManager_OnObjectRemoved;
     }
+
 
     void Update()
     {
@@ -30,6 +32,17 @@ public class EquipmentHolder : MonoBehaviour
         if (eqquipedItem != null) UnEquipLastItem();
 
         if (item != null) EquipNewItem(item);
+    }
+
+
+    private void InventoryManager_OnObjectRemoved(object sender, EventArgs e)
+    {
+        if (sender is Item  item && item  == eqquipedItem)
+        {
+            if (item.itemSO.isStackable && item.itemData.amount > 0) return;
+            UnEquipLastItem();
+            InventoryUI.Instance.ResetSelectedItem();
+        } 
     }
 
     public void UnEquipLastItem()
@@ -48,7 +61,12 @@ public class EquipmentHolder : MonoBehaviour
         equipment = itemObject.GetComponent<IEquipment>();
         InteractionSystem.Instance.SetAllChildrenScanningSelected(itemObject, LayerMask.NameToLayer("Equipment"));
     }
-    
+
+    public Item GetItem()
+    {
+        return eqquipedItem;
+    }
+
     private void MovementAnimation()
     {
         //Checking Movement
