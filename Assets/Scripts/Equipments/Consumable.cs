@@ -8,6 +8,7 @@ public class Consumable : MonoBehaviour, IEquipment
 
     [SerializeField] private Type type;
     [SerializeField] private GameObject usedObject;
+    [SerializeField] private AudioClip usedSound;
 
     private Item item;
     
@@ -28,6 +29,7 @@ public class Consumable : MonoBehaviour, IEquipment
                 break;
         }
 
+        AudioHandler.Instance.PlaySfx(usedSound, true);
         Instantiate(usedObject, transform.position, Quaternion.identity);
         item =  GetComponentInParent<EquipmentHolder>().GetItem();
         Debug.Log("Consumed " + item.itemSO.itemName);

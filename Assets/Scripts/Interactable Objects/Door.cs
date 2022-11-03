@@ -5,6 +5,14 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable, IScannable
 {
     [SerializeField] private ScanInfo scanInfo;
+    
+    private Animator animator;
+    private bool isOpen = false;
+    
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public string GetInteractText()
     {
@@ -24,5 +32,15 @@ public class Door : MonoBehaviour, IInteractable, IScannable
     public void ToggleDoorState(bool state)
     {
 
+    }
+
+    public void OpenDoor()
+    {
+        animator.Play("Open");
+    }
+
+    public void CloseDoor()
+    {
+        animator.Play("Close");
     }
 }

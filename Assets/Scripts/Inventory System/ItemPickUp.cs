@@ -21,7 +21,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
 
     public void Interact()
     {
-        AudioHandler.Instance.PlaySfx(itemPickUpSound);
+        AudioHandler.Instance.PlaySfx(itemPickUpSound, true);
         InventoryManager.Instance.AddItemToInventory(itemSO);
         InteractionSystem.Instance.ForceScanningCloseUI();
         Destroy(gameObject);

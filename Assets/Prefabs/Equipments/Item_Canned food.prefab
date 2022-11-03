@@ -166,3 +166,4 @@ MonoBehaviour:
   type: 2
   usedObject: {fileID: 8463026185882352089, guid: 99d9bd181b0e62a43bfbfd57aab1ff42,
     type: 3}
+  usedSound: {fileID: 8300000, guid: 3ee651a8af60e764080d8a2ccfa7de4f, type: 3}
