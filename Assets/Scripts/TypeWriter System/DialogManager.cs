@@ -87,9 +87,13 @@ public class DialogManager : MonoBehaviour
             yield return new WaitUntil(() => !isTyping && !isPlayingVoiceOver);
         }
 
+
+        yield return new WaitForSecondsRealtime(1);
+
         popUpBox.SetActive(false);
         currentDialog.OnFinsihed?.Invoke();
     }
+
     
     public void SkipDialog()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
 {
     [SerializeField] private ItemSO itemSO;
+    [SerializeField] private AudioClip itemPickUpSound;
     private ScanInfo scanInfo;
 
     void Start()
@@ -20,6 +21,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
 
     public void Interact()
     {
+        AudioHandler.Instance.PlaySfx(itemPickUpSound);
         InventoryManager.Instance.AddItemToInventory(itemSO);
         InteractionSystem.Instance.ForceScanningCloseUI();
         Destroy(gameObject);

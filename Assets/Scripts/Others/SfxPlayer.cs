@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class SfxPlayer : MonoBehaviour
 {
-    [Header("Pitch Settings")]
-    [SerializeField] private float pitchRange = 0.2f;
-
     [Header("Group Clips")]
     [SerializeField] private GroupSfxClips[] groupSfxClips;
 
@@ -26,7 +23,7 @@ public class SfxPlayer : MonoBehaviour
 
     public void PlaySfxRandomPitch(AudioClip audioClip)
     {
-        audioSource.pitch = Random.Range(1.0f - pitchRange, 1.0f + pitchRange);
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
         audioSource.PlayOneShot(audioClip);
     }
 

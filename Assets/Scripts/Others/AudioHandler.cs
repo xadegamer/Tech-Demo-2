@@ -8,7 +8,6 @@ public class AudioHandler : MonoBehaviour
     public static AudioHandler Instance { get; private set; }
 
     [SerializeField] AudioClip menuAudio;
-    [SerializeField] AudioClip lobbyAudio;
     [SerializeField] AudioSource musicPlayer;
     [SerializeField] AudioSource ambientPlayer;
     [SerializeField] AudioSource sfxPlayer;
@@ -20,8 +19,7 @@ public class AudioHandler : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
-        else
-            Destroy(gameObject);
+        else Destroy(gameObject);
     }
 
     private void Start()
@@ -102,6 +100,14 @@ public class AudioHandler : MonoBehaviour
         ChangeMusic(intro, false);
         yield return new WaitForSecondsRealtime(musicPlayer.clip.length - 0.5f);
         ChangeMusic(loopMusic, true);
+    }
+
+    public void PlaySfx(AudioClip audioClip, bool randomPitch = false)
+    {
+        sfxPlayer.clip = audioClip;
+        if (randomPitch) sfxPlayer.pitch = Random.Range(0.8f, 1.2f);
+        else sfxPlayer.pitch = 1;
+        sfxPlayer.PlayOneShot(audioClip);
     }
 
     public AudioSource GetSfxAudioSource() => sfxPlayer;

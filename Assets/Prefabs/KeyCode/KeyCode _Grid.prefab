@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 117058343684068851}
   - component: {fileID: 117058343684068853}
   - component: {fileID: 117058343684068855}
+  - component: {fileID: 3386754070141291032}
   m_Layer: 6
   m_Name: KeyCode _Grid
   m_TagString: Untagged
@@ -75,21 +76,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useUI: 0
-  screenTextFade: {fileID: 0}
+  textBackground: {fileID: 0}
   screenTextText: {fileID: 0}
   screenText: {fileID: 117058345103173818}
+  screenObject: {fileID: 117058345764873183}
+  screenTextFade: {fileID: 117058345418755041}
   puzzleCam: {fileID: 117058344248495135}
   answer: 1234
   maxCharacter: 4
   normalColour: {r: 1, g: 1, b: 1, a: 1}
   correctColor: {r: 0.1300379, g: 1, b: 0, a: 1}
   wrongColour: {r: 1, g: 0, b: 0, a: 1}
+  OnKeyPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3386754070141291032}
+        m_TargetAssemblyTypeName: SfxPlayer, Assembly-CSharp
+        m_MethodName: PlaySfxRandomPitch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: f0d6029faa4669340b9df2ac51382325,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCorrectInput:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3386754070141291032}
+        m_TargetAssemblyTypeName: SfxPlayer, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 161c85efdf7058647a92d89b879c2299,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnWrongInput:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3386754070141291032}
+        m_TargetAssemblyTypeName: SfxPlayer, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 161c85efdf7058647a92d89b879c2299,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   postProcessing: {fileID: 0}
   correctInputDelay: 2
   wrongInputDelay: 2
@@ -109,8 +154,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6870775, y: 1.0306224, z: 0.041457176}
-  m_Center: {x: 0.099993944, y: 0.103502095, z: -0.011772633}
+  m_Size: {x: 0.6870775, y: 1.0306224, z: 0.24187732}
+  m_Center: {x: 0.099993944, y: 0.103502095, z: -0.1119827}
+--- !u!114 &3386754070141291032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117058343684068850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dedf137fe0519444aee73e36c94d829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groupSfxClips: []
 --- !u!1 &117058343991940781
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,8 +199,8 @@ Transform:
   m_LocalScale: {x: -0.64, y: 1, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 117058345418755042}
   - {fileID: 117058345103173817}
+  - {fileID: 117058345418755042}
   - {fileID: 117058345764873168}
   m_Father: {fileID: 117058343684068852}
   m_RootOrder: 1
@@ -222,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117058344248495135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.10000038, y: 0.086, z: -1.8}
+  m_LocalPosition: {x: 0.10000038, y: 0.11, z: -1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -394,7 +452,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 117058343991940782}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -500,7 +558,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 15
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -547,12 +605,12 @@ GameObject:
   - component: {fileID: 117058345418755044}
   - component: {fileID: 117058345418755043}
   m_Layer: 0
-  m_Name: Text (TMP) (1)
+  m_Name: Text _Fade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &117058345418755042
 RectTransform:
   m_ObjectHideFlags: 0
@@ -566,7 +624,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 117058343991940782}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -644,8 +702,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 2667577344
-  m_fontColor: {r: 0, g: 0, b: 0, a: 0.62352943}
+    rgba: 1627389952
+  m_fontColor: {r: 0, g: 0, b: 0, a: 0.38039216}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -672,7 +730,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 15
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -799,7 +857,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8897b50e960bf4e45a1e6c191f314120, type: 2}
+  - {fileID: 2100000, guid: fd544e72425690642a24bf109506614d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

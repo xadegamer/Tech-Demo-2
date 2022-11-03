@@ -865,6 +865,7 @@ GameObject:
   - component: {fileID: 6791423705329998871}
   - component: {fileID: 6791423705329998870}
   - component: {fileID: 6791423705329998889}
+  - component: {fileID: 930498017}
   m_Layer: 6
   m_Name: Connect MiniGame
   m_TagString: Untagged
@@ -933,13 +934,52 @@ MonoBehaviour:
   postProcessing: {fileID: 0}
   OnCorrectInput:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 930498017}
+        m_TargetAssemblyTypeName: SfxPlayer, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: e1d5e5e37d9a41747b0410df31606e38,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnWrongInput:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 930498017}
+        m_TargetAssemblyTypeName: SfxPlayer, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 86e4849727ea8ac4389d673f76d8d4ab,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnComplected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 930498017}
+        m_TargetAssemblyTypeName: SfxPlayer, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 161c85efdf7058647a92d89b879c2299,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   forceCorrect: 0
   lastColourIndex: 0
 --- !u!65 &6791423705329998889
@@ -953,8 +993,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.12}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.32878166}
+  m_Center: {x: 0, y: 0, z: -0.10439083}
+--- !u!114 &930498017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791423705329998868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dedf137fe0519444aee73e36c94d829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groupSfxClips: []
 --- !u!1 &6791423705416081561
 GameObject:
   m_ObjectHideFlags: 0

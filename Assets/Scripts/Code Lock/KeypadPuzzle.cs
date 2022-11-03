@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 {
     public static KeypadPuzzle Instance { get; private set; }
 
     public bool isActive { get; private set; }
-
-    [SerializeField] private bool useUI;
-
+    
     [Header("UI")]
-    [SerializeField] private GameObject screenTextFade;
+    [SerializeField] private bool useUI;
+    [SerializeField] private Image textBackground;
     [SerializeField] private TextMeshProUGUI screenTextText;
 
     [Header("Mesh")]
     [SerializeField] private TextMeshPro screenText;
+    [SerializeField] private GameObject screenObject;
 
     [Header("Properties")]
+    [SerializeField] private GameObject screenTextFade;
     [SerializeField] private GameObject puzzleCam;
     [SerializeField] private string answer;
     [SerializeField] private int maxCharacter;
@@ -28,6 +30,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
     [SerializeField] private Color wrongColour;
 
     [Header("Events")]
+    [SerializeField] private UnityEvent OnKeyPressed;
     [SerializeField] private UnityEvent OnCorrectInput;
     [SerializeField] private UnityEvent OnWrongInput;
 
@@ -63,6 +66,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
         if (disableInput || inputString.Length >= maxCharacter) return;
         inputString += key.ToString();
         DisplayOnScreen(inputString);
+        OnKeyPressed?.Invoke(); 
     }
     public void DeleteKey()
     {
@@ -70,6 +74,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
         {
             inputString = inputString.Substring(0, inputString.Length - 1);
             DisplayOnScreen(inputString);
+            OnKeyPressed?.Invoke();
         }
     }
 
@@ -79,6 +84,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
         {
             inputString = "";
             DisplayOnScreen(inputString);
+            OnKeyPressed?.Invoke();
         }
     }
 
@@ -87,6 +93,8 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
         if (disableInput) return;
 
         disableInput = true;
+
+        OnKeyPressed?.Invoke();
 
         if (inputString == answer)
         {
@@ -100,16 +108,15 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     public void DisplayOnScreen(string input)
     {
-        if (useUI)
-        {
-            screenTextText.text = input;
-            screenTextFade.SetActive(input == "");
-        } else screenText.text = input;
+        screenTextFade.SetActive(input == "");
+        
+        if (useUI) screenTextText.text = input;
+        else screenText.text = input;
     }
 
     public void SetDisplayColour(Color color)
     {
-        if (useUI) screenTextText.color = color; else screenText.color = color;
+        if (useUI) textBackground.color = color; else screenObject.GetComponent<MeshRenderer>().material.color = color;
     }
 
     public void EnterPuzzle()
