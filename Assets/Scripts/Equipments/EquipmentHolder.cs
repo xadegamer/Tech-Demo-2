@@ -1,13 +1,14 @@
 using StarterAssets;
 using System;
+using TMPro;
 using UnityEngine;
 
 public class EquipmentHolder : MonoBehaviour
 {
-    [SerializeField] private Item eqquipedItem;
-    [SerializeField] private GameObject itemObject;
-    [SerializeField] private IEquipment equipment;
-
+    [SerializeField] private GameObject currentItemDisplay;
+    private GameObject itemObject;
+    private IEquipment equipment;
+    private Item eqquipedItem = null;
     Animator a;
 
     void Start()
@@ -22,7 +23,11 @@ public class EquipmentHolder : MonoBehaviour
         if (StarterAssetsInputs.Instance.use)
         {
             StarterAssetsInputs.Instance.use = false;
-            if (equipment != null) equipment.Use();
+            if (equipment != null)
+            {
+                equipment.Use();
+                if (equipment == null || eqquipedItem.itemSO.isStackable) UpdateItemUI();
+            } 
         }
     }
 
@@ -49,6 +54,7 @@ public class EquipmentHolder : MonoBehaviour
         eqquipedItem = null;
         Destroy(itemObject);
         equipment = null;
+        UpdateItemUI();
     }
 
     public void EquipNewItem(Item item)
@@ -59,6 +65,14 @@ public class EquipmentHolder : MonoBehaviour
         itemObject.transform.localEulerAngles = item.itemSO.equipmentSpawnRot;
         equipment = itemObject.GetComponent<IEquipment>();
         InteractionSystem.Instance.SetAllChildrenScanningSelected(itemObject, LayerMask.NameToLayer("Equipment"));
+        UpdateItemUI();
+    }
+
+    public void UpdateItemUI()
+    {
+        currentItemDisplay.SetActive(eqquipedItem != null);
+        if (eqquipedItem == null) return;
+        currentItemDisplay.GetComponentInChildren<TextMeshProUGUI>().text = eqquipedItem.itemSO.isStackable ? eqquipedItem.itemSO.itemName + " : " + eqquipedItem.itemData.amount : eqquipedItem.itemSO.itemName;
     }
 
     public Item GetItem()

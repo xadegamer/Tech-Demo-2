@@ -27,7 +27,6 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject equipButton;
     [SerializeField] private GameObject unEquipButton;
 
-
     [Header("Events")]
     public EventHandler<Item> OnInventorySlotSelected;
     public EventHandler<Item> OnItemDropped;

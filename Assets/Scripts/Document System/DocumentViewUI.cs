@@ -23,6 +23,7 @@ public class DocumentViewUI : MonoBehaviour
 
     [Header("Effect")]
     [SerializeField] private GameObject postProcessing;
+    [SerializeField] private AudioClip openDocumentSound;
 
     [Header("Debug")]
     [SerializeField] private DocumentPickUp documentPickUp;
@@ -66,6 +67,8 @@ public class DocumentViewUI : MonoBehaviour
         GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);
         postProcessing.SetActive(true);
         documentUI.SetActive(true);
+
+        if (openDocumentSound != null) AudioHandler.Instance.PlaySfx(openDocumentSound, true);
     }
 
 

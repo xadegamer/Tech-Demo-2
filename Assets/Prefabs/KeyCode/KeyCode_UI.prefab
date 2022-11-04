@@ -4650,8 +4650,10 @@ MonoBehaviour:
   useUI: 1
   textBackground: {fileID: 7800577270329311242}
   screenTextText: {fileID: 7800577271475093984}
+  gridInstructionUI: {fileID: 0}
   screenText: {fileID: 0}
   screenObject: {fileID: 0}
+  puzzleUI: {fileID: 0}
   screenTextFade: {fileID: 7800577270139046419}
   puzzleCam: {fileID: 7800577270447187872}
   answer: 1234
@@ -4727,7 +4729,7 @@ MonoBehaviour:
   wrongInputDelay: 2
   scanInfo:
     scanName: Keypad Puzzle (UI)
-    scanDescription: Press [ E ] to interact
+    scanDescription: Easy Peazy
     scanSize: 0.05
   actionText: 
 --- !u!65 &7800577271513528098

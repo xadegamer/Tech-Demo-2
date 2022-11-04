@@ -143,9 +143,9 @@ public class GridGenerator : MonoBehaviour
             if (KeypadPuzzle.Instance.isActive) Input_Down();
         }
 
-        if (StarterAssetsInputs.Instance.enter)
+        if (StarterAssetsInputs.Instance.confirm)
         {
-            StarterAssetsInputs.Instance.enter = false;
+            StarterAssetsInputs.Instance.confirm = false;
             if (KeypadPuzzle.Instance.isActive) Input_Click();
         }
 

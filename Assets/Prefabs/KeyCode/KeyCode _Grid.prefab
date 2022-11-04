@@ -78,8 +78,10 @@ MonoBehaviour:
   useUI: 0
   textBackground: {fileID: 0}
   screenTextText: {fileID: 0}
+  gridInstructionUI: {fileID: 0}
   screenText: {fileID: 117058345103173818}
   screenObject: {fileID: 117058345764873183}
+  puzzleUI: {fileID: 0}
   screenTextFade: {fileID: 117058345418755041}
   puzzleCam: {fileID: 117058344248495135}
   answer: 1234
@@ -295,7 +297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117058344248495135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.10000038, y: 0.11, z: -1.8}
+  m_LocalPosition: {x: 0.10000038, y: 0.02, z: -1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -33,7 +33,7 @@ namespace StarterAssets
         public bool right;
         public bool up;
         public bool down;
-        public bool enter;
+        public bool confirm;
         public bool exit;
 
 
@@ -124,9 +124,9 @@ namespace StarterAssets
             EquipInput(value.isPressed);
         }
 
-        public void OnEnter(InputValue value)
+        public void OnConfirm(InputValue value)
         {
-            OnEnterInput(value.isPressed);
+            OnConfirmInput(value.isPressed);
         }
 
         public void OnExit(InputValue value)
@@ -217,9 +217,9 @@ namespace StarterAssets
             equip = newSprintState;
         }
 
-        public void OnEnterInput(bool newSprintState)
+        public void OnConfirmInput(bool newSprintState)
         {
-            enter = newSprintState;
+            confirm = newSprintState;
         }
 
         public void OnExitInput(bool newSprintState)
