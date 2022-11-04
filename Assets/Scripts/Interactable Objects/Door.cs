@@ -6,6 +6,7 @@ public class Door : MonoBehaviour, IInteractable, IScannable
 {
     [SerializeField] private ScanInfo scanInfo;
     [SerializeField] private GameObject cam;
+    [SerializeField] private AudioClip openSfx;
 
     private Animator animator;
     private string actionText = "Open";
@@ -37,6 +38,7 @@ public class Door : MonoBehaviour, IInteractable, IScannable
 
     public void OpenDoor()
     {
+        AudioHandler.Instance.PlaySfx(openSfx, true);
         animator.Play("Open");
     }
 

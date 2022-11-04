@@ -102,6 +102,7 @@ public class DocumentViewUI : MonoBehaviour
 
     public void PickDocument()
     {
+        PopUpMessage.Instance.ShowMessage("You picked up a document, Check Jornal", PopUpMessage.messageType.Normal);
         documentPickUp.PickDocument();
         CloseDocument();
     }

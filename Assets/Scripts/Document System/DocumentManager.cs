@@ -22,9 +22,10 @@ public class DocumentManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            OpenJornal();
+            if (jornalUI.activeInHierarchy) CloseJornal(); 
+            else if (GameManager.Instance.GetCurrentControlMode() == GameManager.ControlMode.PlayerControl) OpenJornal();
         }
     }
 

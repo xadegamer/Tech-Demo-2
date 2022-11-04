@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Buttons : MonoBehaviour
 {
-    public AudioSource sfx;
-    public AudioClip toggle, select;
+    [SerializeField] private AudioClip toggle, select;
     public void Toggle()
     {
-        sfx.PlayOneShot(toggle);
+        AudioHandler.Instance.PlaySfx(toggle, true);
     }
     public void Selected()
     {
-        sfx.PlayOneShot(select);
+        AudioHandler.Instance.PlaySfx(select, true);
     }
 }

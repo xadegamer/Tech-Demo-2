@@ -57,9 +57,8 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            isActivated = !isActivated;
-
-            if (isActivated) OpenInventory();  else CloseInventory();
+            if (inventoryUI.activeInHierarchy) CloseInventory();
+            else if (GameManager.Instance.GetCurrentControlMode() == GameManager.ControlMode.PlayerControl) OpenInventory();
         }
         
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -82,6 +81,7 @@ public class InventoryUI : MonoBehaviour
 
     public void OpenInventory()
     {
+        isActivated = true;
         SetUp();
         GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);
 

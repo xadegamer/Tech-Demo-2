@@ -25,7 +25,7 @@ MonoBehaviour:
   scanSize: 0.05
   inventorySpawnRot: {x: 0, y: 0, z: 0}
   inventorySpawnScale: 1
-  pickupScale: 2
+  pickupScale: 1
   equipmentSpawnPos: {x: 0.13, y: -0.087, z: 0.875}
   equipmentSpawnRot: {x: 0, y: 0, z: 0}
   equipmentSpawnScale: 1

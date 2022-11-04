@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6791423704886200243}
   - component: {fileID: 6791423704886200245}
   - component: {fileID: 6791423704886200242}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Light Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 6791423705044384022}
   - component: {fileID: 6791423705044384023}
   - component: {fileID: 6791423705044384020}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Fill 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 6791423705047583732}
   - component: {fileID: 6791423705047583734}
   - component: {fileID: 6791423705047583735}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: lightFiller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 6791423705136934485}
   - component: {fileID: 6791423705136934482}
   - component: {fileID: 6791423705136934483}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Fill 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 6791423705206366901}
   - component: {fileID: 6791423705206366898}
   - component: {fileID: 6791423705206366899}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 6791423705258675327}
   - component: {fileID: 6791423705258675324}
   - component: {fileID: 6791423705258675325}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Light Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 6791423705279336026}
   - component: {fileID: 6791423705279336028}
   - component: {fileID: 6791423705279336029}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: lightFiller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 6791423705284785667}
   - component: {fileID: 6791423705284785669}
   - component: {fileID: 6791423705284785666}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Light Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -983,7 +983,19 @@ MonoBehaviour:
         m_CallState: 2
   OnFirstAttempt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: OpenDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   forceCorrect: 0
   lastColourIndex: 0
 --- !u!65 &6791423705329998889
@@ -1023,7 +1035,7 @@ GameObject:
   - component: {fileID: 6791423705416081560}
   - component: {fileID: 6791423705416081562}
   - component: {fileID: 6791423705416081563}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: lightFiller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1100,7 +1112,7 @@ GameObject:
   - component: {fileID: 6791423705655393602}
   - component: {fileID: 6791423705655393603}
   - component: {fileID: 6791423705655393600}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Fill 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1176,7 +1188,7 @@ GameObject:
   - component: {fileID: 6791423705736976988}
   - component: {fileID: 6791423705736976990}
   - component: {fileID: 6791423705736976991}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: lightFiller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1253,7 +1265,7 @@ GameObject:
   - component: {fileID: 6791423705740377230}
   - component: {fileID: 6791423705740377231}
   - component: {fileID: 6791423705740377228}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Fill 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1327,7 +1339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6791423705798260704}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Connect Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1367,7 +1379,7 @@ GameObject:
   - component: {fileID: 6791423706024996750}
   - component: {fileID: 6791423706024996736}
   - component: {fileID: 6791423706024996737}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: lightFiller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1446,7 +1458,7 @@ GameObject:
   - component: {fileID: 6791423706036700139}
   - component: {fileID: 6791423706036700141}
   - component: {fileID: 6791423706036700138}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Light Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1591,7 +1603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6791423706081917589}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Bars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1635,7 +1647,7 @@ GameObject:
   - component: {fileID: 6791423706100456624}
   - component: {fileID: 6791423706100456625}
   - component: {fileID: 6791423706100456638}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Fill 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1780,7 +1792,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6791423706289673261}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Light Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1826,7 +1838,7 @@ GameObject:
   - component: {fileID: 6791423706547741398}
   - component: {fileID: 6791423706547741416}
   - component: {fileID: 6791423706547741417}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Light Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2056,7 +2068,7 @@ GameObject:
   - component: {fileID: 6791423706704602152}
   - component: {fileID: 6791423706704602153}
   - component: {fileID: 6791423706704602134}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Fill 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2227,7 +2239,7 @@ GameObject:
   - component: {fileID: 6791423706765603663}
   - component: {fileID: 6791423706765603649}
   - component: {fileID: 6791423706765603662}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: lightFiller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2306,7 +2318,7 @@ GameObject:
   - component: {fileID: 6791423706795462959}
   - component: {fileID: 6791423706795462945}
   - component: {fileID: 6791423706795462958}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Light Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
