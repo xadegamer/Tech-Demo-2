@@ -126,9 +126,6 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
         puzzleCam.SetActive(true);
         
         GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);
-
-        GameManager.Instance.TogglePlayerVisual(false);
-        GameManager.Instance.DisableMovement();
         postProcessing.SetActive(true);
         isActive = true;
 
@@ -172,8 +169,6 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
     {
         disableInput = false;
         puzzleCam.SetActive(false);     
-        GameManager.Instance.TogglePlayerVisual(true);
-        GameManager.Instance.EnableMovement();
         GameManager.Instance.SwitchControl(GameManager.ControlMode.PlayerControl);
         isActive = false;
         postProcessing.SetActive(false);

@@ -56,7 +56,7 @@ public class SettingsManager : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("CaveMusicVol", volume);
+        audioMixer.SetFloat("Master", volume);
         currentVolume = volume;
     }
 

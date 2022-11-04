@@ -7,13 +7,23 @@ namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour
 	{
-		[Header("Character Input Values")]
+        public static StarterAssetsInputs Instance { get; private set; }
+
+        [Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-        public bool leftButton;
-        public bool rightButton;
+
+
+        [Header("Action Input Values")]
+        public bool left;
+        public bool right;
+        public bool up;
+        public bool down;
+        public bool interact;
+        public bool Inventory;
+        public bool use;
 
         [Header("Movement Settings")]
 		public bool analogMovement;
@@ -22,8 +32,13 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+        private void Awake()
+        {
+            Instance = this;
+        }
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -55,6 +70,31 @@ namespace StarterAssets
         {
             RightInput(value.isPressed);
         }
+
+        public void OnUpInput(InputValue value)
+        {
+            UpInput(value.isPressed);
+        }
+
+        public void OnDownInput(InputValue value)
+        {
+            DownInput(value.isPressed);
+        }
+
+        public void OnInteract(InputValue value)
+        {
+            InteractInput(value.isPressed);
+        }
+
+        public void OnInventory(InputValue value)
+        {
+            InventoryInput(value.isPressed);
+        }
+
+        public void OnUse(InputValue value)
+        {
+            UseInput(value.isPressed);
+        }
 #endif
 
 
@@ -80,14 +120,39 @@ namespace StarterAssets
 
         public void LeftInput(bool newSprintState)
         {
-            leftButton = newSprintState;
+            left = newSprintState;
         }
 
         public void RightInput(bool newSprintState)
         {
-            rightButton = newSprintState;
+            right = newSprintState;
         }
-        
+
+        public void UpInput(bool newSprintState)
+        {
+            up = newSprintState;
+        }
+
+        public void DownInput(bool newSprintState)
+        {
+            down = newSprintState;
+        }
+
+        public void InteractInput(bool newSprintState)
+        {
+            interact = newSprintState;
+        }
+
+        public void InventoryInput(bool newSprintState)
+        {
+            Inventory = newSprintState;
+        }
+
+        public void UseInput(bool newSprintState)
+        {
+            use = newSprintState;
+        }
+
         private void OnApplicationFocus(bool hasFocus)
 		{
             SetCursorState(cursorLocked && GameManager.Instance.GetCurrentControlMode() == GameManager.ControlMode.PlayerControl);

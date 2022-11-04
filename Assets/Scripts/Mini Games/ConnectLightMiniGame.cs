@@ -36,8 +36,6 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
     public void EnterPuzzle()
     {
         GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);
-        GameManager.Instance.TogglePlayerVisual(false);
-        GameManager.Instance.DisableMovement();
 
         puzzleCam.SetActive(true);
         puzzleUIDisplay.SetActive(true);
@@ -52,8 +50,6 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
         postProcessing.SetActive(false);
         puzzleUIDisplay.SetActive(false);
 
-        GameManager.Instance.TogglePlayerVisual(true);
-        GameManager.Instance.EnableMovement();
         GameManager.Instance.SwitchControl(GameManager.ControlMode.PlayerControl);
     }
 

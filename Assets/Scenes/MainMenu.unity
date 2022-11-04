@@ -3047,7 +3047,8 @@ AudioSource:
   m_GameObject: {fileID: 1671712173}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 93b109ec61c21424aa0b45f25f4cac32,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3143,10 +3144,11 @@ AudioSource:
   m_GameObject: {fileID: 1671712173}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 93b109ec61c21424aa0b45f25f4cac32,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3239,10 +3241,11 @@ AudioSource:
   m_GameObject: {fileID: 1671712173}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 93b109ec61c21424aa0b45f25f4cac32,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3339,7 +3342,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuAudio: {fileID: 8300000, guid: 6b6a169b2490d40389859303c0a834e4, type: 3}
-  lobbyAudio: {fileID: 0}
   musicPlayer: {fileID: 1671712176}
   ambientPlayer: {fileID: 1671712175}
   sfxPlayer: {fileID: 1671712174}
@@ -4108,7 +4110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b30b73ccdcf74468e996c43b6c317c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfx: {fileID: 12385786772757058}
   toggle: {fileID: 8300000, guid: e1d5e5e37d9a41747b0410df31606e38, type: 3}
   select: {fileID: 8300000, guid: caeb8599c07788745955f05e2520bbc8, type: 3}
 --- !u!95 &12385785948222891
@@ -6313,7 +6314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b30b73ccdcf74468e996c43b6c317c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfx: {fileID: 12385786772757058}
   toggle: {fileID: 8300000, guid: e1d5e5e37d9a41747b0410df31606e38, type: 3}
   select: {fileID: 8300000, guid: caeb8599c07788745955f05e2520bbc8, type: 3}
 --- !u!95 &12385786754840111
@@ -7965,7 +7965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b30b73ccdcf74468e996c43b6c317c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfx: {fileID: 12385786772757058}
   toggle: {fileID: 8300000, guid: e1d5e5e37d9a41747b0410df31606e38, type: 3}
   select: {fileID: 8300000, guid: caeb8599c07788745955f05e2520bbc8, type: 3}
 --- !u!224 &12385787573964106
@@ -8403,7 +8402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b30b73ccdcf74468e996c43b6c317c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfx: {fileID: 12385786772757058}
   toggle: {fileID: 8300000, guid: e1d5e5e37d9a41747b0410df31606e38, type: 3}
   select: {fileID: 8300000, guid: caeb8599c07788745955f05e2520bbc8, type: 3}
 --- !u!95 &12385787643629369

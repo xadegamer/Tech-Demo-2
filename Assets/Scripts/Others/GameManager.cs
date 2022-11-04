@@ -18,14 +18,26 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Image cursor;
     [SerializeField] private GameObject gameUI;
-
-    [SerializeField] private MeshRenderer playerRenderer;
     [SerializeField] private FirstPersonController player;
     [SerializeField] private GameObject equipmentHolder;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        if (StarterAssetsInputs.Instance.up)
+        {
+            Debug.Log("Up");
+        }
     }
 
     public void SwitchControl(ControlMode mode)
@@ -70,11 +82,6 @@ public class GameManager : MonoBehaviour
     public void DisableMovement()
     {
         player.EnableMovement(false);
-    }
-
-    public void TogglePlayerVisual(bool state)
-    {
-        playerRenderer.enabled = state;
     }
 
     public ControlMode GetCurrentControlMode() => currentControlMode;
