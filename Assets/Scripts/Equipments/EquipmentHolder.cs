@@ -19,10 +19,10 @@ public class EquipmentHolder : MonoBehaviour
 
     void Update()
     {
-        if (StarterAssetsInputs.Instance.use && equipment != null)
+        if (StarterAssetsInputs.Instance.use)
         {
-            equipment.Use();
             StarterAssetsInputs.Instance.use = false;
+            if (equipment != null) equipment.Use();
         }
     }
 

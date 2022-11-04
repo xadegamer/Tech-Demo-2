@@ -1,4 +1,5 @@
 using Mono.Cecil.Cil;
+using StarterAssets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,8 +23,9 @@ public class DocumentManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (StarterAssetsInputs.Instance.jornal)
         {
+            StarterAssetsInputs.Instance.jornal = false;
             if (jornalUI.activeInHierarchy) CloseJornal(); 
             else if (GameManager.Instance.GetCurrentControlMode() == GameManager.ControlMode.PlayerControl) OpenJornal();
         }

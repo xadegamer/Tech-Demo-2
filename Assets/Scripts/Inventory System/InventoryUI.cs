@@ -23,6 +23,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemInfo;
     [SerializeField] private TextMeshProUGUI itemCountInfo;
+    [SerializeField] private TextMeshProUGUI equipActionstat;
     [SerializeField] private GameObject equipButton;
     [SerializeField] private GameObject unEquipButton;
 
@@ -63,22 +64,31 @@ public class InventoryUI : MonoBehaviour
             else if (GameManager.Instance.GetCurrentControlMode() == GameManager.ControlMode.PlayerControl) OpenInventory();
         }
         
-        if (StarterAssetsInputs.Instance.left)
+        if (StarterAssetsInputs.Instance.TurnLeft)
         {
-            StarterAssetsInputs.Instance.left = false;
+            StarterAssetsInputs.Instance.TurnLeft = false;
             RotateLeft();
         }
 
-        if (StarterAssetsInputs.Instance.right)
+        if (StarterAssetsInputs.Instance.TurnRight)
         {
-            StarterAssetsInputs.Instance.right = false;
+            StarterAssetsInputs.Instance.TurnRight = false;
             RotateRight();
         }
 
         if (StarterAssetsInputs.Instance.equip)
         {
             StarterAssetsInputs.Instance.equip = false;
+
+            if (selectedItem != null) EquipItem(selectedItem != currentSlot.GetItem());
+
             EquipItem(true);
+        }
+
+        if (StarterAssetsInputs.Instance.Drop)
+        {
+            StarterAssetsInputs.Instance.Drop = false;
+            DropItem();
         }
 
         if (!isTurning && currentSlot != null) currentSlot.transform.Rotate(Vector3.right * currentSlotRotationSpeed * Time.deltaTime);
@@ -105,6 +115,8 @@ public class InventoryUI : MonoBehaviour
         }
         
         inventoryUI.SetActive(true);
+
+        StarterAssetsInputs.SwitchActionMap("Inventory");
     }
 
     public void CloseInventory()
@@ -206,6 +218,8 @@ public class InventoryUI : MonoBehaviour
 
         equipButton.SetActive(currentSlot.GetItem() != selectedItem);
         unEquipButton.SetActive(currentSlot.GetItem() == selectedItem);
+
+        equipActionstat.text = currentSlot.GetItem() != selectedItem ? "Equip" : "UnEquip";
     }
 
     public void RotateRight()
@@ -225,7 +239,7 @@ public class InventoryUI : MonoBehaviour
 
     public void EquipItem(bool toggle)
     {
-        if (!isActivated) return;
+        if (!isActivated || isTurning || itemSlotsList.Count <= 0) return;
         selectedItem = toggle ? currentSlot.GetItem() : null;
         OnInventorySlotSelected?.Invoke(this, selectedItem);
         CloseInventory();
@@ -233,6 +247,7 @@ public class InventoryUI : MonoBehaviour
 
     public void DropItem()
     {
+        if (itemSlotsList.Count <= 0) return;
         OnItemDropped?.Invoke(this, currentSlot.GetItem());
         InventoryManager.Instance.RemoveItemFromInventory(currentSlot.GetItem());
         CloseInventory();

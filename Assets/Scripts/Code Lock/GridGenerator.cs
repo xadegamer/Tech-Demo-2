@@ -1,3 +1,4 @@
+using StarterAssets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -118,13 +119,42 @@ public class GridGenerator : MonoBehaviour
     
     private void InputManager()
     {
-        if (!KeypadPuzzle.Instance.isActive) return;
-        
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) Input_Up();
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) Input_Down();
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) Input_Right();
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) Input_Left();
-        if (Input.GetKeyDown(KeyCode.Return)) Input_Click();
+        if (StarterAssetsInputs.Instance.left)
+        {
+            StarterAssetsInputs.Instance.left = false;
+            if (KeypadPuzzle.Instance.isActive) Input_Left();
+        }
+
+        if (StarterAssetsInputs.Instance.right)
+        {
+            StarterAssetsInputs.Instance.right = false;
+            if (KeypadPuzzle.Instance.isActive) Input_Right();
+        }
+
+        if (StarterAssetsInputs.Instance.up)
+        {
+            StarterAssetsInputs.Instance.up = false;
+            if (KeypadPuzzle.Instance.isActive) Input_Up();
+        }
+
+        if (StarterAssetsInputs.Instance.down)
+        {
+            StarterAssetsInputs.Instance.down = false;
+            if (KeypadPuzzle.Instance.isActive) Input_Down();
+        }
+
+        if (StarterAssetsInputs.Instance.enter)
+        {
+            StarterAssetsInputs.Instance.enter = false;
+            if (KeypadPuzzle.Instance.isActive) Input_Click();
+        }
+
+
+        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) Input_Up();
+        //if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) Input_Down();
+        //if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) Input_Right();
+        //if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) Input_Left();
+        //if (Input.GetKeyDown(KeyCode.Return)) Input_Click();
 
     }
 

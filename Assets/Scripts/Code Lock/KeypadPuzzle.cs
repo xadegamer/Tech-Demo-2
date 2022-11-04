@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using StarterAssets;
 
 public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 {
@@ -57,8 +58,14 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && isActive)
+        //if (Input.GetKeyDown(KeyCode.E) && isActive)
+        //{
+        //    ExitPuzzle();
+        //}
+
+        if (StarterAssetsInputs.Instance.exit && isActive)
         {
+            StarterAssetsInputs.Instance.exit = false;
             ExitPuzzle();
         }
     }
@@ -123,6 +130,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     public void EnterPuzzle()
     {
+        StarterAssetsInputs.SwitchActionMap("Keypad Grid Puzzle");
         puzzleCam.SetActive(true);
         
         GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);

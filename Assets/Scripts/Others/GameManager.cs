@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
         InteractionSystem.Instance.enabled = true;
         equipmentHolder.SetActive(true);
         gameUI.SetActive(true);
+        StarterAssetsInputs.SwitchActionMap("Player");
     }
 
     public void EnableMovement()

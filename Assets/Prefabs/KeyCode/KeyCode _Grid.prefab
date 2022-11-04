@@ -155,7 +155,7 @@ MonoBehaviour:
   wrongInputDelay: 2
   scanInfo:
     scanName: Keypad Puzzle (Grid)
-    scanDescription: Press [ E ] to interact
+    scanDescription: Really Complicated
     scanSize: 0.05
   actionText: 
 --- !u!65 &117058343684068855

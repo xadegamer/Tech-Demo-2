@@ -77,6 +77,8 @@ public class InteractionSystem : MonoBehaviour
             lastActiveScannedGameObject = null;
             OnScanningObjectChanged?.Invoke(lastActiveScannedGameObject, EventArgs.Empty);
         }
+
+        StarterAssetsInputs.Instance.interact = false;
     }
 
     public void DetectInteractable(RaycastHit raycastHit)

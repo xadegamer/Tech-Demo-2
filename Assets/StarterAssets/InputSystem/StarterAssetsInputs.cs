@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -9,22 +10,32 @@ namespace StarterAssets
 	{
         public static StarterAssetsInputs Instance { get; private set; }
 
+        private PlayerInput _playerInput;
+
         [Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+        public bool interact;
+        public bool Inventory;
+        public bool jornal;
 
+        [Header("Inventory Input Values")]
+        public bool use;
+        public bool equip;
+        public bool TurnRight;
+        public bool TurnLeft;
+        public bool Drop;
 
-        [Header("Action Input Values")]
+        [Header("Keypad Puzzle Input Values")]
         public bool left;
         public bool right;
         public bool up;
         public bool down;
-        public bool interact;
-        public bool Inventory;
-        public bool use;
-        public bool equip;
+        public bool enter;
+        public bool exit;
+
 
         [Header("Movement Settings")]
 		public bool analogMovement;
@@ -36,6 +47,17 @@ namespace StarterAssets
         private void Awake()
         {
             Instance = this;
+        }
+
+        void Start()
+        {
+            _playerInput = GetComponent<PlayerInput>();
+        }
+
+        public static void SwitchActionMap(string newActionMap)
+        {
+          Instance. _playerInput.SwitchCurrentActionMap(newActionMap);
+            Debug.Log("Switched to " + Instance._playerInput.currentActionMap);
         }
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -101,6 +123,37 @@ namespace StarterAssets
         {
             EquipInput(value.isPressed);
         }
+
+        public void OnEnter(InputValue value)
+        {
+            OnEnterInput(value.isPressed);
+        }
+
+        public void OnExit(InputValue value)
+        {
+            OnExitInput(value.isPressed);
+        }
+
+        public void OnTurnRight(InputValue value)
+        {
+            TurnRightInput(value.isPressed);
+        }
+
+        public void OnTurnLeft(InputValue value)
+        {
+            TurnLeftInput(value.isPressed);
+        }
+
+        public void OnDrop(InputValue value)
+        {
+            DropInput(value.isPressed);
+        }
+
+        public void OnJornal(InputValue value)
+        {
+            JornalInput(value.isPressed);
+        }
+
 #endif
 
 
@@ -164,9 +217,39 @@ namespace StarterAssets
             equip = newSprintState;
         }
 
+        public void OnEnterInput(bool newSprintState)
+        {
+            enter = newSprintState;
+        }
+
+        public void OnExitInput(bool newSprintState)
+        {
+            exit = newSprintState;
+        }
+
+        private void TurnRightInput(bool isPressed)
+        {
+            TurnRight = isPressed;
+        }
+
+        private void TurnLeftInput(bool isPressed)
+        {
+            TurnLeft = isPressed;
+        }
+
+        private void DropInput(bool isPressed)
+        {
+            Drop = isPressed;
+        }
+
+        private void JornalInput(bool isPressed)
+        {
+            jornal = isPressed;
+        }
+
         private void OnApplicationFocus(bool hasFocus)
 		{
-            SetCursorState(cursorLocked && GameManager.Instance.GetCurrentControlMode() == GameManager.ControlMode.PlayerControl);
+            SetCursorState(cursorLocked && GameManager.Instance?.GetCurrentControlMode() == GameManager.ControlMode.PlayerControl);
         }
 
 		private void SetCursorState(bool newState)
