@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd2a566ed0f6a9445baa36ce19136d0f, type: 3}
-  m_Name: Document 1
+  m_Name: Document 2
   m_EditorClassIdentifier: 
   ID: 0
-  documentName: Intro Letter
-  documentDescription: A sweet letter
+  documentName: Good Bye
+  documentDescription: Private
   documentPages:
   - 'The BehaviorType of a Dialog determines whether multiple players can interact
     with a dialog at once. The default value for this property is SinglePlayer.

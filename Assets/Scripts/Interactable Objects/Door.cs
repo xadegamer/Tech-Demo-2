@@ -5,10 +5,11 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable, IScannable
 {
     [SerializeField] private ScanInfo scanInfo;
-    
+    [SerializeField] private GameObject cam;
+
     private Animator animator;
-    private bool isOpen = false;
-    
+    private string actionText = "Open";
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -16,12 +17,12 @@ public class Door : MonoBehaviour, IInteractable, IScannable
 
     public string GetInteractText()
     {
-        throw new System.NotImplementedException();
+        return "Open";
     }
 
     public ScanInfo GetScanInfo()
     {
-        throw new System.NotImplementedException();
+        return scanInfo;
     }
 
     public void Interact()
@@ -42,5 +43,15 @@ public class Door : MonoBehaviour, IInteractable, IScannable
     public void CloseDoor()
     {
         animator.Play("Close");
+    }
+
+    public void CamOn()
+    {
+        cam.SetActive(true);
+    }
+
+    public void CamOff()
+    {
+        cam.SetActive(false);
     }
 }

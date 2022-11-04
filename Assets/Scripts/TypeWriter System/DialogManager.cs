@@ -29,6 +29,7 @@ public class DialogManager : MonoBehaviour
     private string currentText = "";
     private bool isTyping = false;
     private bool isPlayingVoiceOver = false;
+    private bool isFinished = false;
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class DialogManager : MonoBehaviour
 
     public void PlayDialog(Dialog dialog)
     {
+        if (!isFinished) return;
         currentDialog = dialog;
         currentDialog.OnBegin?.Invoke();
         popUpBox.SetActive(true);
@@ -70,6 +72,7 @@ public class DialogManager : MonoBehaviour
 
     IEnumerator DialogRoutine( DialogSO.TextSequence[] textSequences)
     {
+        isFinished = false;
         for (int i = 0; i < textSequences.Length; i++)
         {
             dialogBoxText.text = "";
@@ -92,6 +95,7 @@ public class DialogManager : MonoBehaviour
 
         popUpBox.SetActive(false);
         currentDialog.OnFinsihed?.Invoke();
+        isFinished = true;
     }
 
     

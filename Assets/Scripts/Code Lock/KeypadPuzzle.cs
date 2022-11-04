@@ -33,6 +33,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
     [SerializeField] private UnityEvent OnKeyPressed;
     [SerializeField] private UnityEvent OnCorrectInput;
     [SerializeField] private UnityEvent OnWrongInput;
+    [SerializeField] private UnityEvent OnFirstAttempt;
 
     [Header("Effect")]
     [SerializeField] private GameObject postProcessing;
@@ -47,6 +48,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     private bool disableInput = false;
     private string inputString = "";
+    private bool complected = false;
 
     private void Awake()
     {
@@ -129,6 +131,12 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
         GameManager.Instance.DisableMovement();
         postProcessing.SetActive(true);
         isActive = true;
+
+        if (!useUI)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     public IEnumerator CorrectCode()
@@ -137,18 +145,27 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
         SetDisplayColour(correctColor);
         yield return new WaitForSeconds(correctInputDelay);
         SetDisplayColour(normalColour);
+        disableInput = false;
         Clear();
-        ExitPuzzle();
+
+        if(!complected)
+        {
+            complected = true;
+            OnFirstAttempt.Invoke();
+            yield return new WaitForSeconds(2);
+            ExitPuzzle();
+        }
+        else ExitPuzzle();
     }
 
     public IEnumerator IncorrectCode()
     {
+        OnWrongInput.Invoke();
         SetDisplayColour(wrongColour);
         yield return new WaitForSeconds(wrongInputDelay);
         disableInput = false;
         SetDisplayColour(normalColour);
         Clear();
-        OnWrongInput.Invoke();
     }
 
     public void ExitPuzzle()

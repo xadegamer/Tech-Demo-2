@@ -26,6 +26,6 @@ MonoBehaviour:
   inventorySpawnRot: {x: 0, y: 0, z: 0}
   inventorySpawnScale: 1
   pickupScale: 2
-  equipmentSpawnPos: {x: 0.128, y: -0.086, z: 0.334}
+  equipmentSpawnPos: {x: 0.13, y: -0.087, z: 0.875}
   equipmentSpawnRot: {x: 0, y: 0, z: 0}
   equipmentSpawnScale: 1

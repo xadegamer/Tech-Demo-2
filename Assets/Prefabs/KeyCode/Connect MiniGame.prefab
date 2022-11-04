@@ -925,6 +925,7 @@ MonoBehaviour:
   - {fileID: 6791423705136934483}
   - {fileID: 6791423705655393600}
   fillSpeed: 0.3
+  secondWaitDuration: 0.5
   scanInfo:
     scanName: Light Minigame
     scanDescription: Press [ E ] to interact
@@ -980,6 +981,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnFirstAttempt:
+    m_PersistentCalls:
+      m_Calls: []
   forceCorrect: 0
   lastColourIndex: 0
 --- !u!65 &6791423705329998889

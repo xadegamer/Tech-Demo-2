@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,6 +14,7 @@ public class DocumentViewUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI documentInfo;
     [SerializeField] private TextMeshProUGUI documentPage;
     [SerializeField] private GameObject nextPageButton;
+    [SerializeField] private GameObject takeButton;
 
     [Header("Document Clear UI")]
     [SerializeField] private GameObject clearDocumentUI;
@@ -27,6 +29,8 @@ public class DocumentViewUI : MonoBehaviour
     [SerializeField] private DocumentSO currentDocumentSO;
     [SerializeField] private int documentIndex = 0;
 
+    private bool inJornal = false;
+
     private void Awake()
     {
         Instance = this;
@@ -39,27 +43,31 @@ public class DocumentViewUI : MonoBehaviour
         nextPageButton.SetActive(false);
     }
 
-    public void ShowDocument(DocumentPickUp documentPickUp)
+    public void ShowNewDocument(DocumentPickUp documentPickUp)
     {
-        GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);
-
-        postProcessing.SetActive(true);
-
-        documentIndex = 0;
-
         this.documentPickUp = documentPickUp;
-        currentDocumentSO = documentPickUp.GetDocument();
+        DisplayDocument(documentPickUp.GetDocument());
+    }
+
+
+    public void DisplayDocument(DocumentSO documentSO, bool inJornal = false)
+    {
+        this.inJornal = inJornal;
+        currentDocumentSO = documentSO;
         documentTitle.text = currentDocumentSO.documentName;
         documentPage.text = $" Page: {documentIndex + 1}/{currentDocumentSO.documentPages.Length}";
-
         documentInfo.fontSize = currentDocumentSO.documentPageTextSize;
         documentInfo.text = currentDocumentSO.documentPages[documentIndex];
-        
-
         nextPageButton.SetActive(currentDocumentSO.documentPages.Length > 0);
+        documentIndex = 0;
 
+        takeButton.SetActive(!inJornal);
+
+        GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);
+        postProcessing.SetActive(true);
         documentUI.SetActive(true);
     }
+
 
     public void ShowDocumentNextPage()
     {
@@ -87,7 +95,9 @@ public class DocumentViewUI : MonoBehaviour
     {
         documentUI.SetActive(false);
         postProcessing.SetActive(false);
-        GameManager.Instance.SwitchControl(GameManager.ControlMode.PlayerControl);
+
+        if (inJornal) DocumentManager.Instance.OpenJornal();
+        else GameManager.Instance.SwitchControl(GameManager.ControlMode.PlayerControl);
     }
 
     public void PickDocument()

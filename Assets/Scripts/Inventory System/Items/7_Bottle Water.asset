@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02af5441f47ecb44897d95c72c943e62, type: 3}
-  m_Name: 5_Touch
+  m_Name: 7_Bottle Water
   m_EditorClassIdentifier: 
-  ID: 5
+  ID: 7
   oneAllowed: 0
-  isStackable: 0
-  itemName: Touch
-  itemDescription: Light ogf the world
+  isStackable: 1
+  itemName: Bottle Water
+  itemDescription: Water of life
   itemIcon: {fileID: 0}
   itemColor: {r: 0, g: 0, b: 0, a: 0}
-  itemPrefab: {fileID: 5236431811727158436, guid: 23ab9227131d016438a3ebb02fc42775,
+  itemPrefab: {fileID: 1811688240916111859, guid: 4b1cd40b8d2434f4b95e4a61c3c13ef8,
     type: 3}
   maxAmount: 5
   scanSize: 0.05
   inventorySpawnRot: {x: 0, y: 0, z: 0}
-  inventorySpawnScale: 2
+  inventorySpawnScale: 1
   pickupScale: 2
-  equipmentSpawnPos: {x: 0.128, y: -0.086, z: 0.334}
+  equipmentSpawnPos: {x: 0.13, y: -0.087, z: 0.875}
   equipmentSpawnRot: {x: 0, y: 0, z: 0}
   equipmentSpawnScale: 1

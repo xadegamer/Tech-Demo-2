@@ -29,10 +29,13 @@ public class Consumable : MonoBehaviour, IEquipment
                 break;
         }
 
+
         AudioHandler.Instance.PlaySfx(usedSound, true);
+        
         Instantiate(usedObject, transform.position, Quaternion.identity);
+        
         item =  GetComponentInParent<EquipmentHolder>().GetItem();
-        Debug.Log("Consumed " + item.itemSO.itemName);
+        PopUpMessage.Instance.ShowMessage("Consumed " + item.itemSO.itemName, PopUpMessage.messageType.Normal);
         InventoryManager.Instance.RemoveItemFromInventory(item);
     }
 }

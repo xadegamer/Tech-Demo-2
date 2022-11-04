@@ -12,7 +12,7 @@ public class DocumentPickUp : MonoBehaviour, IInteractable,IScannable
 
     public void Interact()
     {
-        DocumentViewUI.Instance.ShowDocument(this);
+        DocumentViewUI.Instance.ShowNewDocument(this);
     }
 
     public void PickDocument()

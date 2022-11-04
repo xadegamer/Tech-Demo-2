@@ -91,7 +91,7 @@ public class InventoryUI : MonoBehaviour
             slotInFront = itemSlotsList.IndexOf(currentSlot);
 
             inventoryWheel.rotation = Quaternion.Euler(inventoryWheel.eulerAngles + Vector3.up * (angleToRotate * slotInFront));
-            //StartCoroutine(RotateInventoryWheel(angleToRotate * slotInFront, 1));
+            DisplayCurrentItemInfo();
         }
         
         inventoryUI.SetActive(true);

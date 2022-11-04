@@ -12,6 +12,7 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
     [SerializeField] private Image[] lightControllers;
     [SerializeField] private Image [] lightFillers; 
     [SerializeField] private float fillSpeed;
+    [SerializeField] private float secondWaitDuration;
 
     [Header("Scanning")]
     [SerializeField] private ScanInfo scanInfo;
@@ -25,10 +26,12 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
     [SerializeField] private UnityEvent OnCorrectInput;
     [SerializeField] private UnityEvent OnWrongInput;
     [SerializeField] private UnityEvent OnComplected;
+    [SerializeField] private UnityEvent OnFirstAttempt;
 
     [Header("Debug")]
     [SerializeField] private bool forceCorrect;
     [SerializeField] private int lastColourIndex;
+    private bool complected = false;
 
     public void EnterPuzzle()
     {
@@ -43,7 +46,7 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
         StartMiniGame();
     }
 
-    public void EnterExit()
+    public void ExitPuzzle()
     {
         puzzleCam.SetActive(false);
         postProcessing.SetActive(false);
@@ -85,7 +88,7 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
             }
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(secondWaitDuration);
 
         StartCoroutine(EmptyLights());
     }
@@ -128,7 +131,7 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
             }
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(.5f);
 
         GameComplected();
     }
@@ -164,8 +167,15 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
 
     public void GameComplected()
     {
-        EnterExit();
         OnComplected?.Invoke();
+        
+        if (!complected)
+        {
+            complected = true;
+            OnFirstAttempt?.Invoke();
+            ExitPuzzle();
+        }
+        else ExitPuzzle();
     }
 
     public void LightControllerClick(Image image)

@@ -8,15 +8,17 @@ using StarterAssets;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
+    
     public enum ControlMode
     {
         PlayerControl,
         UIControl   
     }
+    [SerializeField] private ControlMode currentControlMode = ControlMode.PlayerControl;
 
     [SerializeField] private Image cursor;
-    [SerializeField] private ControlMode currentControlMode = ControlMode.PlayerControl;
+    [SerializeField] private GameObject gameUI;
+
     [SerializeField] private MeshRenderer playerRenderer;
     [SerializeField] private FirstPersonController player;
     [SerializeField] private GameObject equipmentHolder;
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
         InteractionSystem.Instance.enabled = false;
         InteractionSystem.Instance.ForceScanningCloseUI();
         equipmentHolder.SetActive(false);
+        gameUI.SetActive(false);
     }
 
     public void PlayerControl()
@@ -56,6 +59,7 @@ public class GameManager : MonoBehaviour
         InteractionSystem.Instance.ForceScanningCloseUI();
         InteractionSystem.Instance.enabled = true;
         equipmentHolder.SetActive(true);
+        gameUI.SetActive(true);
     }
 
     public void EnableMovement()
