@@ -1,3 +1,4 @@
+using StarterAssets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -80,15 +81,20 @@ public class InteractionSystem : MonoBehaviour
 
     public void DetectInteractable(RaycastHit raycastHit)
     {
-        if (Input.GetKeyDown(KeyCode.E) && raycastHit.transform.TryGetComponent(out IInteractable interactable))
+        if (StarterAssetsInputs.Instance.interact)
         {
-            if (Vector3.Distance(transform.position, raycastHit.transform.position) < interactDistance)
+            StarterAssetsInputs.Instance.interact = false;
+
+            if( raycastHit.transform.TryGetComponent(out IInteractable interactable))
             {
-                interactable.Interact();
-            }
-            else
-            {
-                Debug.Log("Too far away to interact");
+                if (Vector3.Distance(transform.position, raycastHit.transform.position) < interactDistance)
+                {
+                    interactable.Interact();
+                }
+                else
+                {
+                    PopUpMessage.Instance.ShowMessage("Too far away to interact", PopUpMessage.messageType.Error);
+                }
             }
         }
     }

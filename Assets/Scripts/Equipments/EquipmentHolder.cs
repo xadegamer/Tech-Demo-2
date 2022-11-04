@@ -1,3 +1,4 @@
+using StarterAssets;
 using System;
 using UnityEngine;
 
@@ -18,9 +19,10 @@ public class EquipmentHolder : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && equipment != null)
+        if (StarterAssetsInputs.Instance.use && equipment != null)
         {
             equipment.Use();
+            StarterAssetsInputs.Instance.use = false;
         }
     }
 

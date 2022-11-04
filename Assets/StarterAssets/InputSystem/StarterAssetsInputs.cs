@@ -24,6 +24,7 @@ namespace StarterAssets
         public bool interact;
         public bool Inventory;
         public bool use;
+        public bool equip;
 
         [Header("Movement Settings")]
 		public bool analogMovement;
@@ -61,22 +62,22 @@ namespace StarterAssets
 			SprintInput(value.isPressed);
 		}
 
-        public void OnLeftInput(InputValue value)
+        public void OnLeft(InputValue value)
         {
             LeftInput(value.isPressed);
         }
 
-        public void OnRightInput(InputValue value)
+        public void OnRight(InputValue value)
         {
             RightInput(value.isPressed);
         }
 
-        public void OnUpInput(InputValue value)
+        public void OnUp(InputValue value)
         {
             UpInput(value.isPressed);
         }
 
-        public void OnDownInput(InputValue value)
+        public void OnDown(InputValue value)
         {
             DownInput(value.isPressed);
         }
@@ -94,6 +95,11 @@ namespace StarterAssets
         public void OnUse(InputValue value)
         {
             UseInput(value.isPressed);
+        }
+
+        public void OnEquip(InputValue value)
+        {
+            EquipInput(value.isPressed);
         }
 #endif
 
@@ -151,6 +157,11 @@ namespace StarterAssets
         public void UseInput(bool newSprintState)
         {
             use = newSprintState;
+        }
+
+        public void EquipInput(bool newSprintState)
+        {
+            equip = newSprintState;
         }
 
         private void OnApplicationFocus(bool hasFocus)

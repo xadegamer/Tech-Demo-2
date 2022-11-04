@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using StarterAssets;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -55,20 +56,29 @@ public class InventoryUI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (StarterAssetsInputs.Instance.Inventory)
         {
+            StarterAssetsInputs.Instance.Inventory = false;
             if (inventoryUI.activeInHierarchy) CloseInventory();
             else if (GameManager.Instance.GetCurrentControlMode() == GameManager.ControlMode.PlayerControl) OpenInventory();
         }
         
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (StarterAssetsInputs.Instance.left)
         {
+            StarterAssetsInputs.Instance.left = false;
             RotateLeft();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (StarterAssetsInputs.Instance.right)
         {
+            StarterAssetsInputs.Instance.right = false;
             RotateRight();
+        }
+
+        if (StarterAssetsInputs.Instance.equip)
+        {
+            StarterAssetsInputs.Instance.equip = false;
+            EquipItem(true);
         }
 
         if (!isTurning && currentSlot != null) currentSlot.transform.Rotate(Vector3.right * currentSlotRotationSpeed * Time.deltaTime);
@@ -215,6 +225,7 @@ public class InventoryUI : MonoBehaviour
 
     public void EquipItem(bool toggle)
     {
+        if (!isActivated) return;
         selectedItem = toggle ? currentSlot.GetItem() : null;
         OnInventorySlotSelected?.Invoke(this, selectedItem);
         CloseInventory();

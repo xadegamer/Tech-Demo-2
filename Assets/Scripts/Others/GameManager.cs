@@ -34,10 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (StarterAssetsInputs.Instance.up)
-        {
-            Debug.Log("Up");
-        }
+        
     }
 
     public void SwitchControl(ControlMode mode)
