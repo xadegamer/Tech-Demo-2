@@ -15,8 +15,13 @@ public class EquipmentHolder : MonoBehaviour
     {
         InventoryUI.Instance.OnInventorySlotSelected += InventoryUI_OnInventorySlotSelected;
         InventoryManager.Instance.OnObjectRemoved += InventoryManager_OnObjectRemoved;
+        InventoryManager.Instance.OnObjectAdded += InventoryManager_OnObjectAdded;
     }
 
+    private void InventoryManager_OnObjectAdded(object sender, EventArgs e)
+    {
+        if(eqquipedItem == sender as Item)  UpdateItemUI();
+    }
 
     void Update()
     {

@@ -53,6 +53,7 @@ public class DocumentViewUI : MonoBehaviour
 
     public void DisplayDocument(DocumentSO documentSO, bool inJornal = false)
     {
+        documentIndex = 0;
         this.inJornal = inJornal;
         currentDocumentSO = documentSO;
         documentTitle.text = currentDocumentSO.documentName;
@@ -60,8 +61,6 @@ public class DocumentViewUI : MonoBehaviour
         documentInfo.fontSize = currentDocumentSO.documentPageTextSize;
         documentInfo.text = currentDocumentSO.documentPages[documentIndex];
         nextPageButton.SetActive(currentDocumentSO.documentPages.Length > 0);
-        documentIndex = 0;
-
         takeButton.SetActive(!inJornal);
 
         GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);

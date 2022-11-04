@@ -21,11 +21,12 @@ public class ItemPickUp : MonoBehaviour, IInteractable, IScannable
 
     public void Interact()
     {
-        AudioHandler.Instance.PlaySfx(itemPickUpSound, true);
-
-        InventoryManager.Instance.AddItemToInventory(itemSO);
-        InteractionSystem.Instance.ForceScanningCloseUI();
-        Destroy(gameObject);
+        if(InventoryManager.Instance.AddItemToInventory(itemSO))
+        {
+            AudioHandler.Instance.PlaySfx(itemPickUpSound, true);
+            InteractionSystem.Instance.ForceScanningCloseUI();
+            Destroy(gameObject);
+        };
     }
 
     public string ScanName()=>  itemSO.itemName;

@@ -47,12 +47,12 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItemToInventory(ItemSO itemSO)
+    public bool AddItemToInventory(ItemSO itemSO)
     {
         if (itemSO.oneAllowed && currentInventoryItems.Exists(item => item.itemSO == itemSO))
         {
             Debug.Log("Item already in inventory");
-            return;
+            return false;
         }
 
         Item newItem = null;
@@ -68,8 +68,12 @@ public class InventoryManager : MonoBehaviour
                         currentInventoryItems[i].itemData.amount++;
                         SaveInventory();
                         OnObjectAdded?.Invoke(currentInventoryItems[i], EventArgs.Empty);
+                        PopUpMessage.Instance.ShowMessage(currentInventoryItems[i].itemSO.itemName + " added to Inventory", PopUpMessage.messageType.Normal);
+                        return true;
                     }
-                    return;
+
+                    PopUpMessage.Instance.ShowMessage("Item full in Inventory", PopUpMessage.messageType.Error);
+                    return false;
                 }
             }
 
@@ -84,9 +88,13 @@ public class InventoryManager : MonoBehaviour
             inventoryData.ItemDataList.Add(newItem.itemData);
         }
 
+        PopUpMessage.Instance.ShowMessage(newItem.itemSO.itemName + " added to Inventory", PopUpMessage.messageType.Normal);
+
         SaveInventory();
 
         OnObjectAdded?.Invoke(newItem, EventArgs.Empty);
+
+        return true;
     }
 
     public void RemoveItemFromInventory(Item item)

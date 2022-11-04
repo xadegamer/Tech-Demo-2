@@ -88,6 +88,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     public IEnumerator CorrectCode()
     {
+        gridInstructionUI.SetActive(false);
         OnCorrectInput.Invoke();
         SetDisplayColour(correctColor);
         yield return new WaitForSeconds(correctInputDelay);
@@ -107,6 +108,7 @@ public class KeypadPuzzle : MonoBehaviour, IInteractable, IScannable
 
     public IEnumerator IncorrectCode()
     {
+        gridInstructionUI.SetActive(false);
         OnWrongInput.Invoke();
         SetDisplayColour(wrongColour);
         yield return new WaitForSeconds(wrongInputDelay);

@@ -79,9 +79,7 @@ public class InventoryUI : MonoBehaviour
         {
             StarterAssetsInputs.Instance.equip = false;
 
-            if (selectedItem != null) EquipItem(selectedItem != currentSlot.GetItem());
-
-            EquipItem(true);
+            TryEquip();
         }
 
         if (StarterAssetsInputs.Instance.Drop)
@@ -234,6 +232,12 @@ public class InventoryUI : MonoBehaviour
         if (slotInFront == 0) slotInFront = itemSlotsList.Count;
         slotInFront = --slotInFront % itemSlotsList.Count;
         StartCoroutine(RotateInventoryWheel(-angleToRotate, wheelSpinSpeed));
+    }
+
+    public void TryEquip()
+    {
+        if (selectedItem != null) EquipItem(selectedItem != currentSlot.GetItem());
+        else EquipItem(true);
     }
 
     public void EquipItem(bool toggle)

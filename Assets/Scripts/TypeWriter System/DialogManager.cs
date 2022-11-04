@@ -29,7 +29,7 @@ public class DialogManager : MonoBehaviour
     private string currentText = "";
     private bool isTyping = false;
     private bool isPlayingVoiceOver = false;
-    private bool isFinished = false;
+    private bool isFinished = true;
 
     private void Awake()
     {

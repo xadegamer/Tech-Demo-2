@@ -16,19 +16,9 @@ MonoBehaviour:
   documentName: Intro Letter
   documentDescription: A sweet letter
   documentPages:
-  - 'The BehaviorType of a Dialog determines whether multiple players can interact
-    with a dialog at once. The default value for this property is SinglePlayer.
-
-
-    While
-    a player is engaged with a dialog, the other players will see the dialog choices
-    of the player who started the dialog, along with the responses.'
-  - 'MultiplePlayers
-
-    When a Dialog is setto MultiplePlayers, any player can
-    initiate a dialog at any time, even if another player has already initiated the
-    dialog. Unlike SinglePlayer however, Dialogs set to MultiplePlayers will not
-    show the dialog choices and responses to anyone but the player in the conversation.'
+  - Do you want to know the code?. I too will like to know but i do you know the
+    code , if even i know it i will not tell you.
+  - Okay. The Code is 1244
   documentIcon: {fileID: 0}
   documentColor: {r: 0, g: 0, b: 0, a: 0}
   documentPageTextSize: 21

@@ -1,3 +1,4 @@
+using StarterAssets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,23 +33,38 @@ public class ConnectLightMiniGame : MonoBehaviour, IInteractable, IScannable
     [SerializeField] private bool forceCorrect;
     [SerializeField] private int lastColourIndex;
     private bool complected = false;
+    private bool isActive = false;
+
+    private void Update()
+    {
+        if (StarterAssetsInputs.Instance.exit && isActive)
+        {
+            StarterAssetsInputs.Instance.exit = false;
+            ExitPuzzle();
+        }
+    }
 
     public void EnterPuzzle()
     {
         GameManager.Instance.SwitchControl(GameManager.ControlMode.UIControl);
-
+        StarterAssetsInputs.SwitchActionMap("Keypad Grid Puzzle");
+        
         puzzleCam.SetActive(true);
         puzzleUIDisplay.SetActive(true);
         postProcessing.SetActive(true);
 
         StartMiniGame();
+
+        isActive = true;
     }
 
     public void ExitPuzzle()
     {
+        StopAllCoroutines();
         puzzleCam.SetActive(false);
         postProcessing.SetActive(false);
         puzzleUIDisplay.SetActive(false);
+        isActive = false;
 
         GameManager.Instance.SwitchControl(GameManager.ControlMode.PlayerControl);
     }
